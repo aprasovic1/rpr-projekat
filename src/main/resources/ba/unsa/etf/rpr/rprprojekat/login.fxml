@@ -52,7 +52,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </TextField>
-      <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" text="Login" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="256.0" text="Login" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
