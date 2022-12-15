@@ -3,9 +3,9 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 import java.util.Objects;
 
 public class Korisnik implements IDable {
-    int korisnik_id;
-String ime,prezime,telefon,user,pass;
-boolean jesteAdmin;
+    private int korisnik_id;
+    private String ime,prezime,telefon,user,pass;
+    private boolean jesteAdmin;
 
     @Override
     public int getId() {
