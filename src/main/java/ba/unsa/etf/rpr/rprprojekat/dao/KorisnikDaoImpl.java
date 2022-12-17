@@ -45,14 +45,17 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     public Korisnik getByName(String ime, String prezime) throws myException {
     Korisnik k = null;
 
-        String query = "SELECT * FROM sql7582884.korisnik WHERE concat(ime,prezime) LIKE concat(?,?)";
+        String query = "SELECT * FROM sql7582884.korisnik k WHERE concat(k.ime,k.prezime) LIKE concat(?,?)";
         try {
-            PreparedStatement s = GetConnection.DajConnection().prepareStatement(query);
-            s.setString(1, ime);
+            Connection c=GetConnection.DajConnection();
+            System.out.println(c.isValid(10));//connection valid?
+           PreparedStatement s = c.prepareStatement(query);
+    s.setString(1, ime);
             s.setString(2, prezime);
+
+            System.out.println(s.toString());
             ResultSet rs = s.executeQuery();
-         //   System.out.println(rs.getString(1));
-            while(rs.next())k=rowToObject(rs);
+        k=rowToObject(rs);
             return k;
         } catch (Exception e) {
             System.out.println("getbyname korisnikdaoimpl");
