@@ -3,18 +3,18 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 import java.util.Objects;
 
 public class Korisnik implements IDable {
-    private int id;
+    private int korisnik_id;
     private String ime,prezime,telefon,user,pass;
     private boolean jesteAdmin;
 
     @Override
     public int getId() {
-        return id;
+        return korisnik_id;
     }
 
     @Override
     public void setId(int id) {
-        this.id = id;
+        this.korisnik_id = id;
     }
 
     public String getIme() {
@@ -68,7 +68,7 @@ public class Korisnik implements IDable {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
+                "id=" + korisnik_id +
                 ", Ime i prezime='" + ime+" "+prezime+" "+", telefon: " +telefon+ '\'' +
                 '}';
     }
@@ -78,11 +78,11 @@ public class Korisnik implements IDable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Korisnik k1 = (Korisnik) o;
-        return id == k1.id;
+        return korisnik_id == k1.korisnik_id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ime,prezime,user,pass,jesteAdmin);
+        return Objects.hash(korisnik_id, ime,prezime,user,pass,jesteAdmin);
     }
 }
