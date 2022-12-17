@@ -5,15 +5,15 @@ import java.util.Objects;
 
 public class Narudzbenica implements IDable
 {
-    private int narudzbenica_id,korisnik_id;
+    private int id,korisnik_id;
     private Date datum_narudzbe;
 
     public int getId() {
-        return narudzbenica_id;
+        return id;
     }
 
     public void setId(int narudzbenica_id) {
-        this.narudzbenica_id = narudzbenica_id;
+        this.id = narudzbenica_id;
     }
 
     public int getKorisnik_id() {
@@ -38,12 +38,12 @@ public class Narudzbenica implements IDable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Narudzbenica n = (Narudzbenica) o;
-        return narudzbenica_id == n.narudzbenica_id ;
+        return id == n.id ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(narudzbenica_id, korisnik_id, datum_narudzbe);
+        return Objects.hash(id, korisnik_id, datum_narudzbe);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Narudzbenica implements IDable
 
     toString() {
         return "Narudzbenica{" +
-                "narudzbenica_id=" + narudzbenica_id +
+                "narudzbenica_id=" + id +
                 ", korisnik_id=" + korisnik_id +
                 ", datum_narudzbe=" + datum_narudzbe +
                 '}';

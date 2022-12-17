@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class stavka_narudzbenice implements
         IDable{
-    int stavka_id,narudzbenica_id,artikal_id,kolicina;
+    int id,narudzbenica_id,artikal_id,kolicina;
 
     public int getId() {
-        return stavka_id;
+        return id;
     }
 
     public void setId(int stavka_id) {
-        this.stavka_id = stavka_id;
+        this.id = stavka_id;
     }
 
     public int getNarudzbenica_id() {
@@ -43,18 +43,18 @@ public class stavka_narudzbenice implements
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         stavka_narudzbenice that = (stavka_narudzbenice) o;
-        return stavka_id == that.stavka_id ;
+        return id == that.id ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(stavka_id, narudzbenica_id, artikal_id, kolicina);
+        return Objects.hash(id, narudzbenica_id, artikal_id, kolicina);
     }
 
     @Override
     public String toString() {
         return "stavka_narudzbenice{" +
-                "stavka_id=" + stavka_id +
+                "stavka_id=" + id +
                 ", narudzbenica_id=" + narudzbenica_id +
                 ", artikal_id=" + artikal_id +
                 ", kolicina=" + kolicina +

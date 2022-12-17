@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Artikal implements IDable
 {
-    private int artikal_id,cijena,kolicina;
+    private int id,cijena,kolicina;
     private String naziv_artikla,vrsta_artikla;
 
     public int getId() {
-        return artikal_id;
+        return id;
     }
 
     public void setId(int artikal_id) {
-        this.artikal_id = artikal_id;
+        this.id = artikal_id;
     }
 
     public int getCijena() {
@@ -50,7 +50,7 @@ public class Artikal implements IDable
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + artikal_id +
+                "id=" + id +
                 ", Artikal: '" + naziv_artikla+" "+", vrsta: " +vrsta_artikla+
                 ", kolicina "+kolicina+", cijena: "+cijena+'\'' +
                 '}';
@@ -61,12 +61,12 @@ public class Artikal implements IDable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artikal a1 = (Artikal) o;
-        return artikal_id == a1.artikal_id;
+        return id == a1.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(artikal_id,cijena,kolicina,naziv_artikla,vrsta_artikla);
+        return Objects.hash(id,cijena,kolicina,naziv_artikla,vrsta_artikla);
     }
 
 }
