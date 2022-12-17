@@ -20,9 +20,9 @@ public abstract class AbstractDao<T extends IDable> implements Dao{
             e.printStackTrace();
          }
      }
-    public abstract T row2object(ResultSet rs) throws myException;
+    public abstract T rowToObject(ResultSet rs) throws myException;
 
-    public abstract Map<String, Object> object2row(T object);
+    public abstract Map<String, Object> objectToRow(T object);
 
     public T getById(int id) throws myException {
         String query = "SELECT * FROM "+this.tableName+" WHERE id = ?";
@@ -31,7 +31,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao{
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
             if (rs.next()) { // result set is iterator.
-                T result = row2object(rs);
+                T result = rowToObject(rs);
                 rs.close();
                 return result;
             } else {
@@ -50,7 +50,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao{
             PreparedStatement s = this.conn.prepareStatement(query);
             ResultSet rs = s.executeQuery();
             while (rs.next()){ // result set is iterator.
-                T object = row2object(rs);
+                T object = rowToObject(rs);
                 results.add(object);
             }
             rs.close();
@@ -74,7 +74,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao{
 
 
     public T add(T item) throws myException{
-        Map<String, Object> row = object2row(item);
+        Map<String, Object> row = objectToRow(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
 
         StringBuilder builder = new StringBuilder();
@@ -83,33 +83,83 @@ public abstract class AbstractDao<T extends IDable> implements Dao{
         builder.append("VALUES (").append(columns.getValue()).append(")");
 
         try{
-            PreparedStatement stmt = this.conn.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
-            // bind params. IMPORTANT treeMap is used to keep columns sorted so params are bind correctly
+            PreparedStatement s = this.conn.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
                 if (entry.getKey().equals("id")) continue; // skip ID
-                stmt.setObject(counter, entry.getValue());
+                s.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.executeUpdate();
+            s.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next(); // we know that there is one key
-            item.setId(rs.getInt(1)); //set id to return it back */
+            ResultSet rs = s.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
 
             return item;
         }catch (SQLException e){
             throw new myException(e.getMessage(), e);
         }
     }
+    public T update(T item) throws myException{
+        Map<String, Object> row = objectToRow(item);
+        String updateColumns = prepareUpdateParts(row);
+        StringBuilder builder = new StringBuilder();
+        builder.append("UPDATE ")
+                .append(tableName)
+                .append(" SET ")
+                .append(updateColumns)
+                .append(" WHERE id = ?");
 
+        try{
+            PreparedStatement s = this.conn.prepareStatement(builder.toString());
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue; // skip ID
+                s.setObject(counter, entry.getValue());
+                counter++;
+            }
+            s.setObject(counter+1, item.getId());
+            s.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            throw new myException(e.getMessage(), e);
+        }
+    }
 
+    private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
+        StringBuilder columns = new StringBuilder();
+        StringBuilder questions = new StringBuilder();
 
+        int i = 0;
+        for (Map.Entry<String, Object> entry: row.entrySet()) {
+            i++;
+            if (entry.getKey().equals("id")) continue;
+            columns.append(entry.getKey());
+            questions.append("?");
+            if (row.size() != i) {
+                columns.append(",");
+                questions.append(",");
+            }
+        }
+        return new AbstractMap.SimpleEntry<String,String>(columns.toString(), questions.toString());
+    }
 
+    private String prepareUpdateParts(Map<String, Object> row){
+        StringBuilder columns = new StringBuilder();
 
-
-
-
-
-
+        int i = 0;
+        for (Map.Entry<String, Object> entry: row.entrySet()) {
+            i++;
+            if (entry.getKey().equals("id")) continue;
+            columns.append(entry.getKey()).append("= ?");
+            if (row.size() != i) {
+                columns.append(",");
+            }
+        }
+        return columns.toString();
+    }
 }
+
+
+
