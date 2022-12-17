@@ -13,7 +13,7 @@ import java.util.*;
  * Abstraktna klasa koja implementira CRUD metode
  *
  * */
-public abstract class AbstractDao<T extends IDable> implements Dao{
+public abstract class AbstractDao<T extends IDable> implements Dao<T>{
     private Connection conn;
     private String tableName;
 

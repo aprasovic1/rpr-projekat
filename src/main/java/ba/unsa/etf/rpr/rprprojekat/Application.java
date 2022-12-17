@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.rprprojekat;
-
+import ba.unsa.etf.rpr.rprprojekat.dao.KorisnikDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+import ba.unsa.etf.rpr.rprprojekat.dao.KorisnikDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,7 +19,17 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+
+
+    public static class Test {
+        static void test() throws myException {
+            KorisnikDaoImpl k = new KorisnikDaoImpl();
+            k.getByName("Kenan", "Kenanovic");
+            System.out.println(k.toString());
+        }
+    }
+
+    public static void main(String[] args) throws myException {
+        Test.test();
     }
 }
