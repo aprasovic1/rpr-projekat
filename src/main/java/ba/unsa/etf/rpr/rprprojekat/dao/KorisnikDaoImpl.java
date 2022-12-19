@@ -10,7 +10,7 @@ import java.util.*;
 
 public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDao{
     public KorisnikDaoImpl() {
-        super();
+        super("korisnik");
     }
 
     @Override
@@ -20,7 +20,6 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
             k.setId(rs.getInt("id"));
             k.setIme(rs.getString("ime"));
             k.setPrezime(rs.getString("prezime"));
-            k.setTelefon(rs.getString("telefon"));
             k.setUser(rs.getString("user"));
             k.setPass(rs.getString("pass"));
             k.setJesteAdmin(rs.getBoolean("jesteAdmin"));
@@ -55,6 +54,7 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
 
             System.out.println(s.toString());
             ResultSet rs = s.executeQuery();
+            rs.next();
         k=rowToObject(rs);
             return k;
         } catch (Exception e) {

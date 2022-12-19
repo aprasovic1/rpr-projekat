@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Korisnik implements IDable {
     private int id;
-    private String ime,prezime,telefon,user,pass;
+    private String ime,prezime,user,pass;
     private boolean jesteAdmin;
 
     @Override
@@ -33,13 +33,6 @@ public class Korisnik implements IDable {
         this.prezime = prezime;
     }
 
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
 
     public String getUser() {
         return user;
@@ -67,9 +60,9 @@ public class Korisnik implements IDable {
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Korisnik{" +
                 "id=" + id +
-                ", Ime i prezime='" + ime+" "+prezime+" "+", telefon: " +telefon+ '\'' +
+                ", Ime i prezime='" + ime+" "+prezime+" "+
                 '}';
     }
 

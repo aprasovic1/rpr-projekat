@@ -17,10 +17,11 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
     private Connection conn;
     private String tableName;
 
-    public AbstractDao() {
+    public AbstractDao(String tableName) {
          try {
+             this.tableName=tableName;
              conn= GetConnection.DajConnection();
-         } catch (IOException e) {
+         } catch (Exception e) {
             e.printStackTrace();
          }
      }

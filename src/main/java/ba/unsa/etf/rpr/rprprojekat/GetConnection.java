@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.rprprojekat;
 
+import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +12,7 @@ import java.util.*;
 
 public class GetConnection {
 
-   public static Connection DajConnection() throws IOException {
+   public static Connection DajConnection() throws myException, IOException {
 
         String[] konekcioniString = new String[3];
 
@@ -20,8 +21,8 @@ public class GetConnection {
         p.load(ClassLoader.getSystemResource("application.properties").openStream());
         try {
             con = DriverManager.getConnection(p.getProperty("db.connection_string"), p.getProperty("db.username"), p.getProperty("db.password"));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new myException("Konekcija nije uspjela",e);
         }
         return con;
     }

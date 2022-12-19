@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Artikal implements IDable
 {
     private int id,cijena,kolicina;
-    private String naziv_artikla,vrsta_artikla;
+    private String naziv_artikla;
 
     public int getId() {
         return id;
@@ -39,19 +39,12 @@ public class Artikal implements IDable
         this.naziv_artikla = naziv_artikla;
     }
 
-    public String getVrsta_artikla() {
-        return vrsta_artikla;
-    }
-
-    public void setVrsta_artikla(String vrsta_artikla) {
-        this.vrsta_artikla = vrsta_artikla;
-    }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Artikal:{" +
                 "id=" + id +
-                ", Artikal: '" + naziv_artikla+" "+", vrsta: " +vrsta_artikla+
+                ", Artikal: '" + naziv_artikla+" "+
                 ", kolicina "+kolicina+", cijena: "+cijena+'\'' +
                 '}';
     }
@@ -66,7 +59,7 @@ public class Artikal implements IDable
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,cijena,kolicina,naziv_artikla,vrsta_artikla);
+        return Objects.hash(id,cijena,kolicina,naziv_artikla);
     }
 
 }

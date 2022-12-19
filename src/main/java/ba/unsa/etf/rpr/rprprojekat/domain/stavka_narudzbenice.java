@@ -53,7 +53,7 @@ public class stavka_narudzbenice implements
 
     @Override
     public String toString() {
-        return "stavka_narudzbenice{" +
+        return "Stavka_narudzbenice{" +
                 "stavka_id=" + id +
                 ", narudzbenica_id=" + narudzbenica_id +
                 ", artikal_id=" + artikal_id +
