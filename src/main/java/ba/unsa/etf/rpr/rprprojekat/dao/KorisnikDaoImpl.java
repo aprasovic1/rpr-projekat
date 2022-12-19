@@ -26,8 +26,7 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
 
             return k;
         } catch (Exception e) {
-            System.out.println("rowtoobject korisnikdaoimpl");
-            throw new myException(e.getMessage(), e);
+            throw new myException("rowtoobject korisnikdaoimpl"+e.getMessage(), e);
         }
     }
 
@@ -35,7 +34,11 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     public Map<String, Object> objectToRow(Korisnik object) {
         Map<String, Object> row = new TreeMap<String, Object>();
         row.put("id", object.getId());
-        row.put("name", object.getIme());
+        row.put("ime", object.getIme());
+        row.put("prezime", object.getPrezime());
+        row.put("user", object.getUser());
+        row.put("pass", object.getPass());
+        row.put("jesteAdmin", object.isJesteAdmin());
         return row;
     }
 
@@ -58,8 +61,8 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
         k=rowToObject(rs);
             return k;
         } catch (Exception e) {
-            System.out.println("getbyname korisnikdaoimpl");
-            throw new myException(e.getMessage(), e);
+            throw new myException("getbyname korisnikdaoimpl"+e.getMessage(), e);
+
         }
 
 
