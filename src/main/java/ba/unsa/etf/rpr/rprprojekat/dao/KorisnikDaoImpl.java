@@ -64,7 +64,27 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
             throw new myException("getbyname korisnikdaoimpl"+e.getMessage(), e);
 
         }
+    }
 
+    @Override
+    public Korisnik getByUsername(String username) throws myException{
+        Korisnik k = null;
 
+        String query = "SELECT * FROM sql7582884.korisnik k WHERE user LIKE ?";
+        try {
+            Connection c=GetConnection.DajConnection();
+            System.out.println(c.isValid(10));//connection valid?
+            PreparedStatement s = c.prepareStatement(query);
+            s.setString(1, username);
+
+            System.out.println(s.toString());
+            ResultSet rs = s.executeQuery();
+            rs.next();
+            k=rowToObject(rs);
+            return k;
+        } catch (Exception e) {
+            throw new myException(e.getMessage(), e);
+
+        }
     }
 }
