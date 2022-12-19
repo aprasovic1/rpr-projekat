@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDao {
-    public NarudzbaDaoImpl(String tableName) {
+    public NarudzbaDaoImpl() {
         super("narudzba");
     }
 

@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
 
 
-    public ArtikalDaoImpl(String tableName) {
+    public ArtikalDaoImpl() {
         super("artikal");
     }
 

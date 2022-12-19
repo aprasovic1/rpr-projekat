@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class StavkaNarudzbeDaoImpl extends AbstractDao<StavkaNarudzbe> implements StavkaNarudzbeDao{
-    public StavkaNarudzbeDaoImpl(String tableName) {
+    public StavkaNarudzbeDaoImpl() {
         super("stavka_narudzbe");
     }
 

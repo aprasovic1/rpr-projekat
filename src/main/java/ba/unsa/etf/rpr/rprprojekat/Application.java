@@ -1,7 +1,10 @@
 package ba.unsa.etf.rpr.rprprojekat;
 
-import ba.unsa.etf.rpr.rprprojekat.dao.KorisnikDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.dao.*;
+import ba.unsa.etf.rpr.rprprojekat.domain.Artikal;
 import ba.unsa.etf.rpr.rprprojekat.domain.Korisnik;
+import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
+import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import ba.unsa.etf.rpr.rprprojekat.dao.KorisnikDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
@@ -28,8 +31,21 @@ public class Application extends javafx.application.Application {
     public static class Test {
         static void test() throws myException, IOException {
             KorisnikDaoImpl k = new KorisnikDaoImpl();
-            Korisnik trazeni = k.getByName("Kenan", "Kenanovic");
-            System.out.println(trazeni.toString());
+            Korisnik trazeniK = k.getById(1);
+            System.out.println(trazeniK.toString());
+
+            ArtikalDaoImpl a = new ArtikalDaoImpl();
+            Artikal trazeniA = a.getById(1);
+            System.out.println(trazeniA.toString());
+
+            NarudzbaDaoImpl
+                    n = new NarudzbaDaoImpl();
+            Narudzba trazenaN = n.getById(1);
+            System.out.println(trazenaN.toString());
+
+            StavkaNarudzbeDaoImpl s = new StavkaNarudzbeDaoImpl();
+            StavkaNarudzbe trazenaS = s.getById(1);
+            System.out.println(trazenaS.toString());
 
         }
     }
