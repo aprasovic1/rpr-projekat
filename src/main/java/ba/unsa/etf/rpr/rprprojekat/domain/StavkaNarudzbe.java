@@ -2,9 +2,9 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 
 import java.util.Objects;
 
-public class stavka_narudzbenice implements
+public class StavkaNarudzbe implements
         IDable{
-    int id,narudzbenica_id,artikal_id,kolicina;
+    int id, narudzba_id,artikal_id,kolicina;
 
     public int getId() {
         return id;
@@ -14,12 +14,12 @@ public class stavka_narudzbenice implements
         this.id = stavka_id;
     }
 
-    public int getNarudzbenica_id() {
-        return narudzbenica_id;
+    public int getNarudzba_id() {
+        return narudzba_id;
     }
 
-    public void setNarudzbenica_id(int narudzbenica_id) {
-        this.narudzbenica_id = narudzbenica_id;
+    public void setNarudzba_id(int narudzba_id) {
+        this.narudzba_id = narudzba_id;
     }
 
     public int getArtikal_id() {
@@ -42,20 +42,20 @@ public class stavka_narudzbenice implements
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        stavka_narudzbenice that = (stavka_narudzbenice) o;
+        StavkaNarudzbe that = (StavkaNarudzbe) o;
         return id == that.id ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, narudzbenica_id, artikal_id, kolicina);
+        return Objects.hash(id, narudzba_id, artikal_id, kolicina);
     }
 
     @Override
     public String toString() {
-        return "Stavka_narudzbenice{" +
+        return "StavkaNarudzbe{" +
                 "stavka_id=" + id +
-                ", narudzbenica_id=" + narudzbenica_id +
+                ", narudzba_id=" + narudzba_id +
                 ", artikal_id=" + artikal_id +
                 ", kolicina=" + kolicina +
                 '}';

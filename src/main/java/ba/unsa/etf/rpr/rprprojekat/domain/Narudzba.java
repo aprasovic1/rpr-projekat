@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class Narudzbenica implements IDable
+public class Narudzba implements IDable
 {
     private int id,korisnik_id;
     private Date datum_narudzbe;
@@ -12,8 +12,8 @@ public class Narudzbenica implements IDable
         return id;
     }
 
-    public void setId(int narudzbenica_id) {
-        this.id = narudzbenica_id;
+    public void setId(int narudzba_id) {
+        this.id = narudzba_id;
     }
 
     public int getKorisnik_id() {
@@ -37,7 +37,7 @@ public class Narudzbenica implements IDable
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Narudzbenica n = (Narudzbenica) o;
+        Narudzba n = (Narudzba) o;
         return id == n.id ;
     }
 
@@ -50,8 +50,8 @@ public class Narudzbenica implements IDable
     public String
 
     toString() {
-        return "Narudzbenica{" +
-                "narudzbenica_id=" + id +
+        return "Narudzba{" +
+                "narudzba_id=" + id +
                 ", korisnik_id=" + korisnik_id +
                 ", datum_narudzbe=" + datum_narudzbe +
                 '}';

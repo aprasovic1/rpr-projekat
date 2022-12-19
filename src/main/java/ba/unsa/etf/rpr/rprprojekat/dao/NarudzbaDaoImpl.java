@@ -1,22 +1,21 @@
 package ba.unsa.etf.rpr.rprprojekat.dao;
 
-import ba.unsa.etf.rpr.rprprojekat.domain.Korisnik;
-import ba.unsa.etf.rpr.rprprojekat.domain.Narudzbenica;
+import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
 import java.sql.ResultSet;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class NarudzbenicaDaoImpl extends AbstractDao<Narudzbenica> implements NarudzbenicaDao {
-    public NarudzbenicaDaoImpl(String tableName) {
-        super("narudzbenica");
+public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDao {
+    public NarudzbaDaoImpl(String tableName) {
+        super("narudzba");
     }
 
     @Override
-    public Narudzbenica rowToObject(ResultSet rs) throws myException {
+    public Narudzba rowToObject(ResultSet rs) throws myException {
         try {
-            Narudzbenica n = new Narudzbenica();
+            Narudzba n = new Narudzba();
             n.setId(rs.getInt("id"));
             n.setDatum_narudzbe(rs.getDate("datum_narudzbe"));
             n.setKorisnik_id(rs.getInt( "korisnik_id") );
@@ -27,7 +26,7 @@ public class NarudzbenicaDaoImpl extends AbstractDao<Narudzbenica> implements Na
     }
 
     @Override
-    public Map<String, Object> objectToRow(Narudzbenica object) {
+    public Map<String, Object> objectToRow(Narudzba object) {
         Map<String, Object> row = new TreeMap<String, Object>();
         row.put("id", object.getId());
         row.put("datum_narudzbe", object.getDatum_narudzbe());
