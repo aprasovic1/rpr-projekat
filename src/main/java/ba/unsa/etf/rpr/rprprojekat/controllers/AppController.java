@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.rprprojekat;
+package ba.unsa.etf.rpr.rprprojekat.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

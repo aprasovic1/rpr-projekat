@@ -6,4 +6,6 @@ module ba.unsa.etf.rpr.rprprojekat {
 
     opens ba.unsa.etf.rpr.rprprojekat to javafx.fxml;
     exports ba.unsa.etf.rpr.rprprojekat;
+    exports ba.unsa.etf.rpr.rprprojekat.controllers;
+    opens ba.unsa.etf.rpr.rprprojekat.controllers to javafx.fxml;
 }

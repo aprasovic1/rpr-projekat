@@ -20,8 +20,8 @@ import java.sql.SQLException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("kreiranjeAzuriranjeKupca.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 430);
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300, 100);
         stage.setTitle("Login!");
         stage.setScene(scene);
         stage.show();
@@ -52,7 +52,7 @@ public class Application extends javafx.application.Application {
 
     public static void main(String[] args) throws myException {
         try {
-            Test.test();
+           launch();
         } catch (Exception e) {
             throw new myException(e.getMessage(), e);
         }
