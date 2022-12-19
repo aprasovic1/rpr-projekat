@@ -1,13 +1,44 @@
 package ba.unsa.etf.rpr.rprprojekat.controllers;
 
+import ba.unsa.etf.rpr.rprprojekat.Application;
+import ba.unsa.etf.rpr.rprprojekat.dao.NarudzbaDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
+import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class LoginController {
 
+    public PasswordField pwdField;
+    public TextField usrField;
+    public Button loginBtn;
+
+
+    public LoginController() {}
+
     @FXML
     protected void onLoginButtonClick () {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prikaz_brisanje_narudzbi.fxml"));
+            PrikazBrisanjeNarudzbiController prikaz = new PrikazBrisanjeNarudzbiController();
+            loader.setController(prikaz);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle("Prikaz/brisanje narudzbi");
+            stage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

@@ -16,12 +16,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 100);
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setTitle("Login!");
         stage.setScene(scene);
         stage.show();
