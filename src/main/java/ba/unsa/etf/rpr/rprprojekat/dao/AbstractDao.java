@@ -3,8 +3,9 @@ package ba.unsa.etf.rpr.rprprojekat.dao;
 import ba.unsa.etf.rpr.rprprojekat.GetConnection;
 import ba.unsa.etf.rpr.rprprojekat.domain.IDable;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.*;
@@ -48,9 +49,11 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
     }
 
 
-    public List<T> getAll() throws myException {
+
+
+    public ObservableList<T> getAll() throws myException {
         String query = "SELECT * FROM "+ tableName;
-        List<T> results = new ArrayList<T>();
+        ArrayList<T> results = new ArrayList<T>();
         try{
             PreparedStatement s = this.conn.prepareStatement(query);
             ResultSet rs = s.executeQuery();
@@ -59,7 +62,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
                 results.add(object);
             }
             rs.close();
-            return results;
+            return FXCollections.observableList(results);
         }catch (SQLException e){
             throw new myException(e.getMessage(), e);
         }

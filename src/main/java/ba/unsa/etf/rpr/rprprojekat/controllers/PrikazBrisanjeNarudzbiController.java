@@ -15,40 +15,29 @@ import java.util.Date;
 
 public class PrikazBrisanjeNarudzbiController {
     public TableView<Narudzba> narudzbeTable;
-    public TableColumn<Narudzba, Integer> narudzbaIdKolona;
-    public TableColumn<Narudzba, Integer> korisnikIdKolona;
-    public TableColumn<Narudzba, Date> datumNarudzbeIdKolona;
+    public TableColumn<Integer,Narudzba> narudzbaIdKolona;
+    public TableColumn<Integer,Narudzba> korisnikIdKolona;
+    public TableColumn<Date,Narudzba> datumNarudzbeIdKolona;
     public MenuButton menuButton;
     public TextField idNarudzbeText;
     public Button brisiNardzbuButton;
 
-
-    public PrikazBrisanjeNarudzbiController() throws myException {
-        try {
-            NarudzbaDaoImpl n = new NarudzbaDaoImpl();
-            ObservableList<Narudzba> lista = FXCollections.observableArrayList(n.getAll());
-
-            narudzbeTable = new TableView<>();
-
-            narudzbaIdKolona = new TableColumn<>("ID");
-            korisnikIdKolona = new TableColumn<>("Korisnik ID");
-            datumNarudzbeIdKolona = new TableColumn<>("datumNarudzbe");
-
-            narudzbaIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
-            korisnikIdKolona.setCellValueFactory(new PropertyValueFactory<>("korisnik_id"));
-            datumNarudzbeIdKolona.setCellValueFactory(new PropertyValueFactory<>("datum_narudzbe"));
-
-            narudzbeTable.setItems(lista);
-
-
-            narudzbeTable.getColumns().setAll(narudzbaIdKolona, korisnikIdKolona, datumNarudzbeIdKolona);
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
-    }
+    NarudzbaDaoImpl n = new NarudzbaDaoImpl();
+    public PrikazBrisanjeNarudzbiController()  {}
 
     @FXML
-    public void Initialize() {
+    public void Initialize() throws myException {
+        narudzbeTable=new TableView<Narudzba>();
+        narudzbaIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
+        korisnikIdKolona.setCellValueFactory(new PropertyValueFactory<>("korisnik_id"));
+        datumNarudzbeIdKolona.setCellValueFactory(new PropertyValueFactory<>("datum_narudzbe"));
+        for(Narudzba nx:n.getAll()){
+            System.out.println(nx.toString());
+        }
+
+        narudzbeTable.getItems().clear();
+        narudzbeTable.setItems(n.getAll());
+        narudzbeTable.refresh();
     }
 
     public void onBrisiNarzdzbuButtonPressed(ActionEvent actionEvent) {
