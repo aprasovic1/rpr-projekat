@@ -8,12 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.Date;
 
-public class PrikazBrisanjeNarudzbiController {
+public class PrikazBrisanjeNarudzbiController  {
     public TableView<Narudzba> narudzbeTable;
     public TableColumn<Integer,Narudzba> narudzbaIdKolona;
     public TableColumn<Integer,Narudzba> korisnikIdKolona;

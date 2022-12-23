@@ -36,14 +36,6 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <PasswordField fx:id="pwdField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </PasswordField>
       <TextField fx:id="usrField" prefHeight="27.0" prefWidth="137.0" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -52,7 +44,15 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </TextField>
-      <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="300.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="304.0" text="Login" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <PasswordField fx:id="pwdField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </PasswordField>
+      <Button fx:id="loginBtn" defaultButton="true" maxHeight="30.0" maxWidth="300.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="27.0" prefWidth="304.0" text="Login" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>

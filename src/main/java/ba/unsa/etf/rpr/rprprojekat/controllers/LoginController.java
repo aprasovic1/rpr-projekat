@@ -27,6 +27,12 @@ public class LoginController {
 
 
     public LoginController() {}
+    public void Initialize(){
+        loginBtn.setDefaultButton(true);
+
+    }
+
+
 
     @FXML
     protected void onLoginButtonClick () {
@@ -46,11 +52,13 @@ public class LoginController {
             }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prikaz_brisanje_narudzbi.fxml"));
             PrikazBrisanjeNarudzbiController prikaz = new PrikazBrisanjeNarudzbiController();
+            Stage stara = (Stage) loginBtn.getScene().getWindow();
             loader.setController(prikaz);
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setTitle("Prikaz/brisanje narudzbi");
+stara.hide();
             stage.show();
         } catch (Exception e) {
             throw new RuntimeException(e);
