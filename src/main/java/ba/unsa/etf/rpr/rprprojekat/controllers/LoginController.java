@@ -27,7 +27,7 @@ public class LoginController {
 
 
     public LoginController() {}
-    public void Initialize(){
+    public void initialize(){
         loginBtn.setDefaultButton(true);
 
     }

@@ -27,7 +27,7 @@ public class PrikazBrisanjeNarudzbiController  {
     public PrikazBrisanjeNarudzbiController()  {}
 
     @FXML
-    public void Initialize() throws myException {
+    public void initialize() throws myException {
         narudzbeTable=new TableView<Narudzba>();
         narudzbaIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
         korisnikIdKolona.setCellValueFactory(new PropertyValueFactory<>("korisnik_id"));

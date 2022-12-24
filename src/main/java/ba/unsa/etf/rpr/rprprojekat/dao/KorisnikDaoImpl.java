@@ -77,7 +77,7 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
             PreparedStatement s = c.prepareStatement(query);
             s.setString(1, username);
 
-            System.out.println(s.toString());
+            System.out.println("KorisnikDAOImpl:"+s.toString());
             ResultSet rs = s.executeQuery();
             rs.next();
             k=rowToObject(rs);

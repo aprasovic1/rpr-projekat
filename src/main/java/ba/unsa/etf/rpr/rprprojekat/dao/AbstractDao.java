@@ -62,6 +62,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
                 results.add(object);
             }
             rs.close();
+            System.out.println(tableName+"AbstractDAO: "+s.toString());
             return FXCollections.observableList(results);
         }catch (SQLException e){
             throw new myException(e.getMessage(), e);
