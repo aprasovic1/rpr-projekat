@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,41 +16,44 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     public PasswordField pwdField;
     public TextField usrField;
     public Button loginBtn;
+    public Label wrongPassLabel;
 
 
     public LoginController() {}
-    public void initialize(){
-        loginBtn.setDefaultButton(true);
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loginBtn.setDefaultButton(true);wrongPassLabel.setText("Unesite");
     }
-
 
 
     @FXML
     protected void onLoginButtonClick () {
+
         try {
             KorisnikDaoImpl k=new KorisnikDaoImpl();
+            Korisnik kor =k.getByUsername(usrField.getText());
+            while(true){
             try {
-                Korisnik kor =k.getByUsername(usrField.getText());
-
-                while(!kor.getPass().equals(pwdField.getText())){
-
-                }
-
+                if(kor.getPass().equals(pwdField.getText())) break;
+                wrongPassLabel.setText("Pogresan password!");
 
 
             }catch (Exception e){
 
             }
+        }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prikaz_brisanje_narudzbi.fxml"));
             PrikazBrisanjeNarudzbiController prikaz = new PrikazBrisanjeNarudzbiController();
             Stage stara = (Stage) loginBtn.getScene().getWindow();
@@ -65,6 +69,7 @@ stara.hide();
         }
 
     }
+
 
 
 }
