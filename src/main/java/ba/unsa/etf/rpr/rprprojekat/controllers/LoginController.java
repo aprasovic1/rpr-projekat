@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,38 +38,47 @@ public class LoginController implements Initializable {
         loginBtn.setDefaultButton(true);wrongPassLabel.setText("Unesite");
     }
 
-
+    private void openDialog(String title, String file, Object controller){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            loader.setController(controller);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle(title);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        }catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
     @FXML
     protected void onLoginButtonClick () {
 
-        try {
+        try
+        {
+
             KorisnikDaoImpl k=new KorisnikDaoImpl();
             Korisnik kor =k.getByUsername(usrField.getText());
-            while(true){
-            try {
-                if(kor.getPass().equals(pwdField.getText())) break;
-                wrongPassLabel.setText("Pogresan password!");
-
-
-            }catch (Exception e){
+            if(kor==null) System.out.println("Korisnik ne postoji");
+            else{
+                if(!kor.getPass().equals(pwdField.getText()))
+                    System.out.println("Pogresan password!");
 
             }
-        }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prikaz_brisanje_narudzbi.fxml"));
-            PrikazBrisanjeNarudzbiController prikaz = new PrikazBrisanjeNarudzbiController();
-            Stage stara = (Stage) loginBtn.getScene().getWindow();
-            loader.setController(prikaz);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setTitle("Prikaz/brisanje narudzbi");
-stara.hide();
-            stage.show();
+
+
+
+
+
+            openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
+            Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
     }
+
 
 
 
