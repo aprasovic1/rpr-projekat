@@ -64,10 +64,6 @@ public class StavkaNarudzbe implements
                 ", kolicina=" + kolicina +
                 '}';
     }
-    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
-        new NarudzbaDaoImpl().add(nar);
-        new StavkaNarudzbeDaoImpl().add(sn);
 
-    }
 
 }

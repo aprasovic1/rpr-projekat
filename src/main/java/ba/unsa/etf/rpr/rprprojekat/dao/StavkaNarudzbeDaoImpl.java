@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.rprprojekat.dao;
 
 import ba.unsa.etf.rpr.rprprojekat.domain.Artikal;
+import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
 import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
@@ -37,5 +38,10 @@ public class StavkaNarudzbeDaoImpl extends AbstractDao<StavkaNarudzbe> implement
         row.put("artikal_id", object.getArtikal_id());
         row.put("kolicina", object.getKolicina());
         return row;
+    }
+    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
+        new NarudzbaDaoImpl().add(nar);
+        new StavkaNarudzbeDaoImpl().add(sn);
+
     }
 }
