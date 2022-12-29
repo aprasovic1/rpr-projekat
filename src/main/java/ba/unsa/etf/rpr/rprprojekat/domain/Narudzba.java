@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.rprprojekat.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -24,11 +25,11 @@ public class Narudzba implements IDable
         this.korisnik_id = korisnik_id;
     }
 
-    public Date getDatum_narudzbe() {
+    public LocalDate getDatum_narudzbe() {
         return datum_narudzbe;
     }
 
-    public void setDatum_narudzbe(Date datum_narudzbe) {
+    public void setDatum_narudzbe(LocalDate datum_narudzbe) {
         this.datum_narudzbe = datum_narudzbe;
     }
 
