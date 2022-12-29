@@ -82,7 +82,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
     }
 
 
-    public T add(T item) throws myException{
+    public void add(T item) throws myException{
         Map<String, Object> row = objectToRow(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
 
@@ -105,7 +105,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
             rs.next();
             item.setId(rs.getInt(1));
 
-            return item;
+
         }catch (SQLException e){
             throw new myException(e.getMessage(), e);
         }
@@ -136,7 +136,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
         }
     }
 
-    private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
+    protected Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         StringBuilder questions = new StringBuilder();
 
@@ -154,7 +154,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
         return new AbstractMap.SimpleEntry<String,String>(columns.toString(), questions.toString());
     }
 
-    private String prepareUpdateParts(Map<String, Object> row){
+    protected String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
 
         int i = 0;

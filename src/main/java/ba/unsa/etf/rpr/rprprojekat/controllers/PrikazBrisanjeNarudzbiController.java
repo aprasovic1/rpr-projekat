@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.rprprojekat.dao.NarudzbaDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.dao.StavkaNarudzbeDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,19 +31,12 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
     public Button brisiNardzbuButton;
 
     NarudzbaDaoImpl n = new NarudzbaDaoImpl();
-
+    private NarudzbaModel nModel=new NarudzbaModel();
     public PrikazBrisanjeNarudzbiController() {
     }
 
 
-    public void onBrisiNarzdzbuButtonPressed(ActionEvent actionEvent) throws myException {
-        int idInput = Integer.parseInt(idNarudzbeText.getText());
-        new StavkaNarudzbeDaoImpl().delete(idInput);
-        n.delete(idInput);
-        idNarudzbeText.clear();
-        narudzbeTable.refresh();
 
-    }
 
     @FXML
     @Override
@@ -63,6 +57,15 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
             System.out.println(e.getMessage());
 
         }
+    }
+
+    public void onBrisiNarzdzbuButtonPressed(ActionEvent actionEvent) throws myException {
+        idNarudzbeText.textProperty().bindBidirectional((Property<String>) nModel.id.asString());
+        new StavkaNarudzbeDaoImpl().delete(nModel.id.getValue());
+        n.delete(nModel.id.getValue());
+        idNarudzbeText.clear();
+        narudzbeTable.refresh();
+
     }
         public class NarudzbaModel {
             public SimpleIntegerProperty id = new SimpleIntegerProperty(), korisnik_id = new SimpleIntegerProperty();

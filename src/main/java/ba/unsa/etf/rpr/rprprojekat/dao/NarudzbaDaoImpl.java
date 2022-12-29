@@ -1,13 +1,17 @@
 package ba.unsa.etf.rpr.rprprojekat.dao;
 
 import ba.unsa.etf.rpr.rprprojekat.domain.Narudzba;
+import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDao {
+    private Connection conn;
+    private String tableName = "narudzba";
+
     public NarudzbaDaoImpl() {
         super("narudzba");
     }
@@ -17,8 +21,8 @@ public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDa
         try {
             Narudzba n = new Narudzba();
             n.setId(rs.getInt("id"));
-            n.setDatum_narudzbe(rs.getDate("datum_narudzbe"));
-            n.setKorisnik_id(rs.getInt( "korisnik_id") );
+            n.setDatum_narudzbe(rs.getDate("datum_narudzbe").toLocalDate());
+            n.setKorisnik_id(rs.getInt("korisnik_id"));
             return n;
         } catch (Exception e) {
             throw new myException(e.getMessage(), e);
@@ -33,5 +37,11 @@ public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDa
         row.put("korisnik_id", object.getKorisnik_id()
         );
         return row;
+    }
+
+    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
+       new NarudzbaDaoImpl().add(nar);
+        new StavkaNarudzbeDaoImpl().add(sn);
+
     }
 }

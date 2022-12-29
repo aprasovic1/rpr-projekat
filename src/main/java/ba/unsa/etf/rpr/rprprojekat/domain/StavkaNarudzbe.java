@@ -1,5 +1,9 @@
 package ba.unsa.etf.rpr.rprprojekat.domain;
 
+import ba.unsa.etf.rpr.rprprojekat.dao.NarudzbaDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.dao.StavkaNarudzbeDaoImpl;
+import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+
 import java.util.Objects;
 
 public class StavkaNarudzbe implements
@@ -59,6 +63,11 @@ public class StavkaNarudzbe implements
                 ", artikal_id=" + artikal_id +
                 ", kolicina=" + kolicina +
                 '}';
+    }
+    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
+        new NarudzbaDaoImpl().add(nar);
+        new StavkaNarudzbeDaoImpl().add(sn);
+
     }
 
 }

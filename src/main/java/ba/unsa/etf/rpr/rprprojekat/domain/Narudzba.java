@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Narudzba implements IDable
 {
     private int id,korisnik_id;
-    private Date datum_narudzbe;
+    private LocalDate datum_narudzbe;
 
     public int getId() {
         return id;
