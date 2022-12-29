@@ -37,12 +37,13 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
         new StavkaNarudzbeDaoImpl().delete(idInput);
         n.delete(idInput);
         idNarudzbeText.clear();
+        narudzbeTable.refresh();
+
     }
 
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        narudzbeTable = new TableView<Narudzba>();
         narudzbaIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
         korisnikIdKolona.setCellValueFactory(new PropertyValueFactory<>("korisnik_id"));
         datumNarudzbeIdKolona.setCellValueFactory(new PropertyValueFactory<>("datum_narudzbe"));
