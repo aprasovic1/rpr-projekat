@@ -28,7 +28,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
      }
     public abstract T rowToObject(ResultSet rs) throws myException;
 
-    public abstract Map<String, Object> objectToRow(T object);
+    public abstract Map<String, Object> objectToRow(T object) throws myException;
 
     public T getById(int id) throws myException {
         String query = "SELECT * FROM "+this.tableName+" WHERE id = ?";

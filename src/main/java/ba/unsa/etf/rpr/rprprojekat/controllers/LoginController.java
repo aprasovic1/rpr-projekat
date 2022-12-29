@@ -57,23 +57,31 @@ public class LoginController implements Initializable {
         try
         {
 
-            KorisnikDaoImpl k=new KorisnikDaoImpl();
-            Korisnik kor =k.getByUsername(usrField.getText());
-            if(kor==null) System.out.println("Korisnik ne postoji");
-            else{
-                if(!kor.getPass().equals(pwdField.getText()))
+            KorisnikDaoImpl k=null;
+            Korisnik kor=null ;
+            try{
+                k=new KorisnikDaoImpl();
+                kor =k.getByUsername(usrField.getText());
+            }
+            catch(myException e){
+                new Alert(Alert.AlertType.WARNING, "Korisnik ne postoji!", ButtonType.OK).show();
+            }
+            while(true) {
+                if (!kor.getPass().equals(pwdField.getText())) {
                     System.out.println("Pogresan password!");
+                    new Alert(Alert.AlertType.WARNING, "Pogresan password!", ButtonType.OK).show();
+                    wait();
+                }
+                else break;
+
 
             }
-
-
-
-
 
             openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
             Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
 
         } catch (Exception e) {
+
             throw new RuntimeException(e);
         }
 

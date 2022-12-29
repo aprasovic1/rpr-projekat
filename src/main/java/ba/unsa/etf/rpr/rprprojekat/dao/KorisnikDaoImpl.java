@@ -31,15 +31,20 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     }
 
     @Override
-    public Map<String, Object> objectToRow(Korisnik object) {
-        Map<String, Object> row = new TreeMap<String, Object>();
-        row.put("id", object.getId());
-        row.put("ime", object.getIme());
-        row.put("prezime", object.getPrezime());
-        row.put("user", object.getUser());
-        row.put("pass", object.getPass());
-        row.put("jesteAdmin", object.isJesteAdmin());
-        return row;
+    public Map<String, Object> objectToRow(Korisnik object) throws myException {
+        try {
+            Map<String, Object> row = new TreeMap<String, Object>();
+            row.put("id", object.getId());
+            row.put("ime", object.getIme());
+            row.put("prezime", object.getPrezime());
+            row.put("user", object.getUser());
+            row.put("pass", object.getPass());
+            row.put("jesteAdmin", object.isJesteAdmin());
+            return row;
+        }
+        catch (Exception e){
+            throw new myException("objecttorow korisnikdaoimpl"+e.getMessage(), e);
+        }
     }
 
 
