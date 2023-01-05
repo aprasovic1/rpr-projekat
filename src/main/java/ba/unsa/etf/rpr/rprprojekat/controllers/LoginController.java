@@ -77,7 +77,8 @@ public class LoginController implements Initializable {
 
             }
 
-            openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
+            //openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
+            openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
             Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
 
         } catch (Exception e) {
