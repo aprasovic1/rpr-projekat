@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.rprprojekat.controllers;
 import ba.unsa.etf.rpr.rprprojekat.dao.ArtikalDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.domain.Artikal;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -61,19 +62,28 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
             System.out.println(e.getMessage());
 
         }
+        idZaAzuriranjeTextField.textProperty().bindBidirectional( aModel.id,new NumberStringConverter());
+        kolicinaZaAzuriranjeTextField.textProperty().bindBidirectional( aModel.kolicina,new NumberStringConverter());
+        idZaAzuriranjeTextField.clear();
+        kolicinaZaAzuriranjeTextField.clear();
     }
 
 
 
     public void onAzurirajButtonPressed(ActionEvent actionEvent) throws myException {
-        idZaAzuriranjeTextField.textProperty().bindBidirectional((Property<String>) aModel.id.asString());
-        kolicinaZaAzuriranjeTextField.textProperty().bindBidirectional( (Property<String>) aModel.kolicina.asString() );
-        Artikal artikal= a.getById(aModel.id.getValue());
+
+
+        System.out.println(aModel.id.get()+"  <id,kol>  "+aModel.kolicina.getValue());
+        Artikal artikal= a.getById(aModel.id.get());
         artikal.setKolicina(artikal.getKolicina()+aModel.kolicina.getValue());
         a.update(artikal);
+
         idZaAzuriranjeTextField.clear();
         kolicinaZaAzuriranjeTextField.clear();
+        prikazArtikalaTableView.getItems().clear();
+        prikazArtikalaTableView.setItems(a.getAll());
         prikazArtikalaTableView.refresh();
+
     }
 
     public void onDodajArtikalButtonPressed(ActionEvent actionEvent) throws myException {

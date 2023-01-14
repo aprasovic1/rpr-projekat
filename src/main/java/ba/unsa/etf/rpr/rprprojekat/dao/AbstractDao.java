@@ -128,7 +128,8 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
                 s.setObject(counter, entry.getValue());
                 counter++;
             }
-            s.setObject(counter+1, item.getId());
+
+            s.setObject(counter, item.getId());
             s.executeUpdate();
             return item;
         }catch (SQLException e){
