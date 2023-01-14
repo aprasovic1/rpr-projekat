@@ -6,10 +6,13 @@ ba\unsa\etf\rpr\rprprojekat\domain\StavkaNarudzbe.class
 ba\unsa\etf\rpr\rprprojekat\dao\StavkaNarudzbeDaoImpl.class
 ba\unsa\etf\rpr\rprprojekat\domain\Korisnik.class
 ba\unsa\etf\rpr\rprprojekat\GetConnection.class
+ba\unsa\etf\rpr\rprprojekat\controllers\DodavanjeAzuriranjeArtiklaController$ArtikalModel.class
 ba\unsa\etf\rpr\rprprojekat\dao\AbstractDao.class
 ba\unsa\etf\rpr\rprprojekat\dao\NarudzbaDaoImpl.class
 ba\unsa\etf\rpr\rprprojekat\Application.class
+ba\unsa\etf\rpr\rprprojekat\controllers\DodavanjeAzuriranjeArtiklaController.class
 ba\unsa\etf\rpr\rprprojekat\domain\IDable.class
+ba\unsa\etf\rpr\rprprojekat\controllers\DodavanjeAzuriranjeKupcaController.class
 ba\unsa\etf\rpr\rprprojekat\dao\KorisnikDao.class
 ba\unsa\etf\rpr\rprprojekat\controllers\LoginController.class
 ba\unsa\etf\rpr\rprprojekat\dao\NarudzbaDao.class
@@ -17,6 +20,7 @@ ba\unsa\etf\rpr\rprprojekat\Application$Test.class
 ba\unsa\etf\rpr\rprprojekat\dao\KorisnikDaoImpl.class
 ba\unsa\etf\rpr\rprprojekat\dao\Dao.class
 ba\unsa\etf\rpr\rprprojekat\dao\StavkaNarudzbeDao.class
+ba\unsa\etf\rpr\rprprojekat\controllers\PrikazBrisanjeNarudzbiController$NarudzbaModel.class
 ba\unsa\etf\rpr\rprprojekat\controllers\PrikazBrisanjeNarudzbiController.class
 ba\unsa\etf\rpr\rprprojekat\exceptions\myException.class
 ba\unsa\etf\rpr\rprprojekat\controllers\AppController.class
