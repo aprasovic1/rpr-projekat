@@ -2,12 +2,14 @@ package ba.unsa.etf.rpr.rprprojekat.dao;
 
 import ba.unsa.etf.rpr.rprprojekat.GetConnection;
 import ba.unsa.etf.rpr.rprprojekat.domain.Artikal;
-import ba.unsa.etf.rpr.rprprojekat.domain.Korisnik;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -43,20 +45,30 @@ public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
     }
 
     @Override
-    public Artikal getByName(String naziv) throws myException {
+    public ObservableList<Artikal> getByName(String naziv) throws myException {
         Artikal a = null;
 
         String query = "SELECT * FROM sql7582884.artikal a WHERE a.naziv_artikla LIKE ?";
         try {
             Connection c= GetConnection.DajConnection();
             System.out.println(c.isValid(10));//connection valid?
-            PreparedStatement s = c.prepareStatement(query);
-            s.setString(1, naziv);
+            /*PreparedStatement s = c.prepareStatement(query);
+            s.setString(1, "%"+naziv+"%");
             System.out.println(s.toString());
             ResultSet rs = s.executeQuery();
             rs.next();
             a=rowToObject(rs);
-            return a;
+            return a;*/
+            ArrayList<Artikal> results = new ArrayList<Artikal>();
+            PreparedStatement s = c.prepareStatement(query);
+            s.setString(1, "%"+naziv+"%");
+            ResultSet rs = s.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                Artikal object = rowToObject(rs);
+                results.add(object);
+            }
+            rs.close();
+            return FXCollections.observableList(results);
         } catch (Exception e) {
             throw new myException(e.getMessage(), e);
 
