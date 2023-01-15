@@ -17,7 +17,9 @@ import javafx.util.converter.NumberStringConverter;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 
 public class DodavanjeAzuriranjeKupcaController implements Initializable{
@@ -55,10 +57,35 @@ public class DodavanjeAzuriranjeKupcaController implements Initializable{
         userKolona.setCellValueFactory(new PropertyValueFactory<>("user"));
         passKolona.setCellValueFactory(new PropertyValueFactory<>("pass"));
         bindTextFields();
+        try {
+            refreshTable();
+        } catch (myException e) {
+            throw new RuntimeException(e);
+        }
+
+idZaAzuriranjeTextField.textProperty().addListener((obs, old, n) -> {
+    List<Korisnik> l;
+    try {
+        l=k.getAll();
+    } catch (myException e) {
+        throw new RuntimeException(e);
+    }
+    List<Korisnik> fil=l.stream().filter(k->k.getId()==Integer.parseInt(n)).collect(Collectors.toList());
+    kModel.fromKorisnik(fil.get(0));
+});
     }
 
 
-    public void onAzurirajPostojecegKupcaButtonPressed(ActionEvent actionEvent) {
+    public void onAzurirajPostojecegKupcaButtonPressed(ActionEvent actionEvent) throws myException {
+        Korisnik kor= k.getById(kModel.id.getValue());
+        kor.setIme(kModel.ime.getValue());
+        kor.setPrezime(kModel.prezime.getValue());
+        kor.setUser(kModel.user.getValue());
+        kor.setPass(kModel.pass.getValue());
+        k.update(kor);
+        refreshTable();
+        idZaAzuriranjeTextField.clear();
+        clearDodavanje();
     }
 
     public void onDodajKupcaButton(ActionEvent actionEvent) {
@@ -101,8 +128,15 @@ public class DodavanjeAzuriranjeKupcaController implements Initializable{
 
     }
     private void refreshTable() throws myException {
+        List<Korisnik> l;
         prikazOsobaTableView.getItems().clear();
-        prikazOsobaTableView.setItems(k.getAll());
+        try {
+            l=k.getAll();
+        } catch (myException e) {
+            throw new RuntimeException(e);
+        }
+        List<Korisnik> fil=l.stream().filter(k->!k.isJesteAdmin()).collect(Collectors.toList());
+        prikazOsobaTableView.setItems(FXCollections.observableList(fil));
         prikazOsobaTableView.refresh();
     }
     private void bindTextFields(){
@@ -112,5 +146,12 @@ public class DodavanjeAzuriranjeKupcaController implements Initializable{
         usernameZaDodavanjeTextField.textProperty().bindBidirectional(kModel.user);
         passwordZaDodavanjeTextField.textProperty().bindBidirectional(kModel.pass);
 
+    }
+    private void clearDodavanje(){
+
+        imeZaDodavanjeTextField.clear();
+        prezimeZaDodavanjeTextField.clear();
+        usernameZaDodavanjeTextField.clear();
+        passwordZaDodavanjeTextField.clear();
     }
 }
