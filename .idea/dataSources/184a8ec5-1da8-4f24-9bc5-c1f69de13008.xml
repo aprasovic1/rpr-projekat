@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@sql7.freemysqlhosting.net">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>sql7582884|schema||sql7582884||ALTER|G
-sql7582884|schema||sql7582884||ALTER ROUTINE|G
-sql7582884|schema||sql7582884||CREATE|G
-sql7582884|schema||sql7582884||CREATE ROUTINE|G
-sql7582884|schema||sql7582884||CREATE VIEW|G
-sql7582884|schema||sql7582884||DELETE|G
-sql7582884|schema||sql7582884||DROP|G
-sql7582884|schema||sql7582884||EXECUTE|G
-sql7582884|schema||sql7582884||INDEX|G
-sql7582884|schema||sql7582884||INSERT|G
-sql7582884|schema||sql7582884||LOCK TABLES|G
-sql7582884|schema||sql7582884||SELECT|G
-sql7582884|schema||sql7582884||SHOW VIEW|G
-sql7582884|schema||sql7582884||UPDATE|G</Grants>
-      <ServerVersion>5.5.62</ServerVersion>
-    </root>
+    <root id="1"/>
     <collation id="2" parent="1" name="big5_chinese_ci">
       <Charset>big5</Charset>
       <DefaultForCharset>1</DefaultForCharset>
@@ -667,16 +648,16 @@ sql7582884|schema||sql7582884||UPDATE|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="204" parent="200" name="narudzbenica">
+    <table id="204" parent="200" name="narudzba">
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="205" parent="200" name="stavka_narudzbenice">
+    <table id="205" parent="200" name="stavka_narudzbe">
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
     <column id="206" parent="202" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -686,162 +667,152 @@ sql7582884|schema||sql7582884||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="208" parent="202" name="vrsta_artikla">
-      <DataType>varchar(255)|0s</DataType>
+    <column id="208" parent="202" name="cijena">
+      <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="209" parent="202" name="cijena">
-      <DataType>double|0s</DataType>
+    <column id="209" parent="202" name="kolicina">
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="210" parent="202" name="kolicina">
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <index id="211" parent="202" name="PRIMARY">
+    <index id="210" parent="202" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="212" parent="202" name="PRIMARY">
+    <key id="211" parent="202" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="213" parent="203" name="id">
+    <column id="212" parent="203" name="id">
       <AutoIncrement>6</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="214" parent="203" name="ime">
+    <column id="213" parent="203" name="ime">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="215" parent="203" name="prezime">
+    <column id="214" parent="203" name="prezime">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="216" parent="203" name="telefon">
-      <DataType>varchar(30)|0s</DataType>
+    <column id="215" parent="203" name="user">
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="217" parent="203" name="user">
-      <DataType>varchar(50)|0s</DataType>
+    <column id="216" parent="203" name="pass">
+      <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="218" parent="203" name="pass">
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <column id="219" parent="203" name="jesteAdmin">
+    <column id="217" parent="203" name="jesteAdmin">
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>7</Position>
+      <Position>6</Position>
     </column>
-    <index id="220" parent="203" name="PRIMARY">
+    <index id="218" parent="203" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="221" parent="203" name="tip_id">
+    <index id="219" parent="203" name="tip_id">
       <ColNames>jesteAdmin</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="222" parent="203" name="PRIMARY">
+    <key id="220" parent="203" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="223" parent="204" name="id">
+    <column id="221" parent="204" name="id">
       <AutoIncrement>5</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="224" parent="204" name="korisnik_id">
+    <column id="222" parent="204" name="korisnik_id">
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="225" parent="204" name="datum_narudzbe">
+    <column id="223" parent="204" name="datum_narudzbe">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="226" parent="204" name="nar_kor_fk">
+    <foreign-key id="224" parent="204" name="nar_kor_fk">
       <ColNames>korisnik_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>korisnik</RefTableName>
     </foreign-key>
-    <index id="227" parent="204" name="PRIMARY">
+    <index id="225" parent="204" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="228" parent="204" name="nar_kor_fk_idx">
+    <index id="226" parent="204" name="nar_kor_fk_idx">
       <ColNames>korisnik_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="229" parent="204" name="PRIMARY">
+    <key id="227" parent="204" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="230" parent="205" name="id">
+    <column id="228" parent="205" name="id">
       <AutoIncrement>5</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="231" parent="205" name="narudzbenica_id">
+    <column id="229" parent="205" name="narudzba_id">
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="232" parent="205" name="artikal_id">
+    <column id="230" parent="205" name="artikal_id">
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="233" parent="205" name="kolicina">
+    <column id="231" parent="205" name="kolicina">
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="234" parent="205" name="sn_nar_fk">
-      <ColNames>narudzbenica_id</ColNames>
+    <foreign-key id="232" parent="205" name="sn_nar_fk">
+      <ColNames>narudzba_id</ColNames>
       <RefColNames>id</RefColNames>
-      <RefTableName>narudzbenica</RefTableName>
+      <RefTableName>narudzba</RefTableName>
     </foreign-key>
-    <foreign-key id="235" parent="205" name="sn_art_fk">
+    <foreign-key id="233" parent="205" name="sn_art_fk">
       <ColNames>artikal_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>artikal</RefTableName>
     </foreign-key>
-    <index id="236" parent="205" name="PRIMARY">
+    <index id="234" parent="205" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="237" parent="205" name="sn_nar_fk_idx">
-      <ColNames>narudzbenica_id</ColNames>
+    <index id="235" parent="205" name="sn_nar_fk_idx">
+      <ColNames>narudzba_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="238" parent="205" name="sn_art_fk_idx">
+    <index id="236" parent="205" name="sn_art_fk_idx">
       <ColNames>artikal_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="239" parent="205" name="PRIMARY">
+    <key id="237" parent="205" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
