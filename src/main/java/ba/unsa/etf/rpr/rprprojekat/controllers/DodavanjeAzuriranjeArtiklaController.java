@@ -51,9 +51,7 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
                 System.out.println(nx.toString());
             }
 
-            prikazArtikalaTableView.getItems().clear();
-            prikazArtikalaTableView.setItems(a.getAll());
-            prikazArtikalaTableView.refresh();
+           refreshTable();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -148,5 +146,6 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
         cijenaZaDodavanjeTextField.clear();
         kolicinaZaDodavanjeTextField.clear();
     }
+
 
 }
