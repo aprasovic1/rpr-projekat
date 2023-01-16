@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr.rprprojekat.controllers;
+
 import ba.unsa.etf.rpr.rprprojekat.dao.ArtikalDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.domain.Artikal;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
@@ -9,12 +10,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DodavanjeAzuriranjeArtiklaController implements Initializable{
+public class DodavanjeAzuriranjeArtiklaController implements Initializable {
 
     public TableView<Artikal> prikazArtikalaTableView;
     public TableColumn<Integer, Artikal> artikalIdKolona;
@@ -33,7 +35,8 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
     public Button azurirajButton;
 
     ArtikalDaoImpl a = new ArtikalDaoImpl();
-    private DodavanjeAzuriranjeArtiklaController.ArtikalModel aModel=new DodavanjeAzuriranjeArtiklaController.ArtikalModel();
+    private DodavanjeAzuriranjeArtiklaController.ArtikalModel aModel = new DodavanjeAzuriranjeArtiklaController.ArtikalModel();
+
     public DodavanjeAzuriranjeArtiklaController() {
     }
 
@@ -51,7 +54,7 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
                 System.out.println(nx.toString());
             }
 
-           refreshTable();
+            refreshTable();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -62,14 +65,24 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
 
     }
 
+    public void onUpravljanjeKupcimaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Dodavanje/Azuriranje kupaca", "/fxml/dodavanje_azuriranje_kupca.fxml", new DodavanjeAzuriranjeKupcaController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
 
+    public void onUpravljanjeNarudzbamaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Prikaz/brisanje narudzbi", "/fxml/prikaz_brisanje_narudzbi.fxml", new PrikazBrisanjeNarudzbiController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
 
     public void onAzurirajButtonPressed(ActionEvent actionEvent) throws myException {
 
 
-        System.out.println(aModel.id.get()+"  <id,kol>  "+aModel.kolicina.getValue());
-        Artikal artikal= a.getById(aModel.id.get());
-        artikal.setKolicina(artikal.getKolicina()+aModel.kolicina.getValue());
+        System.out.println(aModel.id.get() + "  <id,kol>  " + aModel.kolicina.getValue());
+        Artikal artikal = a.getById(aModel.id.get());
+        artikal.setKolicina(artikal.getKolicina() + aModel.kolicina.getValue());
         a.update(artikal);
 
         clearAzuriranje();
@@ -79,7 +92,7 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
 
     public void onDodajArtikalButtonPressed(ActionEvent actionEvent) throws myException {
 
-        Artikal artikal= new Artikal();
+        Artikal artikal = new Artikal();
         artikal.setKolicina(aModel.kolicina.getValue());
         artikal.setCijena(aModel.cijena.getValue());
         artikal.setNaziv_artikla(aModel.naziv.getValue());
@@ -90,7 +103,7 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
 
     public void onTraziPoNazivuButtonPressed(ActionEvent actionEvent) throws myException {
         prikazArtikalaTableView.getItems().clear();
-        prikazArtikalaTableView.setItems( a.getByName(nazivZaPretraguTextField.getText()));
+        prikazArtikalaTableView.setItems(a.getByName(nazivZaPretraguTextField.getText()));
         prikazArtikalaTableView.refresh();
     }
 
@@ -117,29 +130,33 @@ public class DodavanjeAzuriranjeArtiklaController implements Initializable{
         }
 
     }
+
     private void refreshTable() throws myException {
         prikazArtikalaTableView.getItems().clear();
         prikazArtikalaTableView.setItems(a.getAll());
         prikazArtikalaTableView.refresh();
     }
 
-    private void bindAzuriranje(){
-        idZaAzuriranjeTextField.textProperty().bindBidirectional( aModel.id,new NumberStringConverter());
-        kolicinaZaAzuriranjeTextField.textProperty().bindBidirectional( aModel.kolicina,new NumberStringConverter());
+    private void bindAzuriranje() {
+        idZaAzuriranjeTextField.textProperty().bindBidirectional(aModel.id, new NumberStringConverter());
+        kolicinaZaAzuriranjeTextField.textProperty().bindBidirectional(aModel.kolicina, new NumberStringConverter());
         clearAzuriranje();
     }
-    private void clearAzuriranje(){
+
+    private void clearAzuriranje() {
         idZaAzuriranjeTextField.clear();
         kolicinaZaAzuriranjeTextField.clear();
     }
-    private void bindDodavanje(){
 
-        nazivZaDodavanjeTextField.textProperty().bindBidirectional( aModel.naziv);
-        cijenaZaDodavanjeTextField.textProperty().bindBidirectional(aModel.cijena,new NumberStringConverter());
-        kolicinaZaDodavanjeTextField.textProperty().bindBidirectional( aModel.kolicina,new NumberStringConverter());
+    private void bindDodavanje() {
+
+        nazivZaDodavanjeTextField.textProperty().bindBidirectional(aModel.naziv);
+        cijenaZaDodavanjeTextField.textProperty().bindBidirectional(aModel.cijena, new NumberStringConverter());
+        kolicinaZaDodavanjeTextField.textProperty().bindBidirectional(aModel.kolicina, new NumberStringConverter());
         clearDodavanje();
     }
-    private void clearDodavanje(){
+
+    private void clearDodavanje() {
 
 
         nazivZaDodavanjeTextField.clear();
