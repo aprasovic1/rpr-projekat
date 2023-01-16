@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.time.LocalDate;
@@ -67,6 +69,16 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
         narudzbeTable.refresh();
 
     }
+    public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
+    public void onUpravljanjeKupcimaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Dodavanje/Azuriranje kupaca", "/fxml/dodavanje_azuriranje_kupca.fxml", new DodavanjeAzuriranjeKupcaController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
         public class NarudzbaModel {
             public SimpleIntegerProperty id = new SimpleIntegerProperty(), korisnik_id = new SimpleIntegerProperty();
             public SimpleObjectProperty<LocalDate> datum_narudzbe = new SimpleObjectProperty<LocalDate>();
@@ -86,6 +98,7 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
             }
 
         }
+
 
     }
 
