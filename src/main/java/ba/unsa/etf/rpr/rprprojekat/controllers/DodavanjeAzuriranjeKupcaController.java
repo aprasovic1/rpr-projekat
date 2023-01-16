@@ -103,11 +103,14 @@ idZaAzuriranjeTextField.textProperty().addListener((obs, old, n) -> {
     public void onTraziPoNazivuButtonPressed(ActionEvent actionEvent) throws myException {
 
         ArrayList<Korisnik> arr=new ArrayList<Korisnik>();
-        arr.add(k.getByName(imeZaPretraguTextField.getText(),prezimeZaPretraguTextField.getText()));
-        prikazOsobaTableView.getItems().clear();
-        prikazOsobaTableView.setItems(FXCollections.observableList(arr));
-        prikazOsobaTableView.refresh();
-
+        if(imeZaPretraguTextField.textProperty().length().getValue()==0&&prezimeZaPretraguTextField.textProperty().length().getValue()==0)
+            refreshTable();
+        else {
+            arr.add(k.getByName(imeZaPretraguTextField.getText(), prezimeZaPretraguTextField.getText()));
+            prikazOsobaTableView.getItems().clear();
+            prikazOsobaTableView.setItems(FXCollections.observableList(arr));
+            prikazOsobaTableView.refresh();
+        }
     }
 
     public class KorisnikModel {
