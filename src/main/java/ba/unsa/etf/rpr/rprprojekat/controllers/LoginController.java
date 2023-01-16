@@ -38,9 +38,9 @@ public class LoginController implements Initializable {
         loginBtn.setDefaultButton(true);wrongPassLabel.setText("Unesite");
     }
 
-    private void openDialog(String title, String file, Object controller){
+    protected static void openDialog(String title, String file, Object controller){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(file));
             loader.setController(controller);
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
 
             //openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
             //openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
-            openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_kupca.fxml",new DodavanjeAzuriranjeKupcaController());
+            openDialog("Dodavanje/Azuriranje kupaca","/fxml/dodavanje_azuriranje_kupca.fxml",new DodavanjeAzuriranjeKupcaController());
             Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
 
         } catch (Exception e) {
