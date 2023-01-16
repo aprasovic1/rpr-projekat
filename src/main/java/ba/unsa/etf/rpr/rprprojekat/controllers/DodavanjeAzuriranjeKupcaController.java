@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
 import java.net.URL;
@@ -113,6 +114,16 @@ idZaAzuriranjeTextField.textProperty().addListener((obs, old, n) -> {
         }
     }
 
+    public void onUpravljanjeNarudzbamaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Prikaz/brisanje narudzbi", "/fxml/prikaz_brisanje_narudzbi.fxml", new PrikazBrisanjeNarudzbiController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
+    public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
+        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
+    }
     public class KorisnikModel {
         public SimpleIntegerProperty id = new SimpleIntegerProperty();
         public SimpleStringProperty ime = new SimpleStringProperty(),
