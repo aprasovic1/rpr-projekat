@@ -88,7 +88,16 @@ idZaAzuriranjeTextField.textProperty().addListener((obs, old, n) -> {
         clearDodavanje();
     }
 
-    public void onDodajKupcaButton(ActionEvent actionEvent) {
+    public void onDodajKupcaButton(ActionEvent actionEvent) throws myException {
+        Korisnik novi =new Korisnik();
+        novi.setJesteAdmin(false);
+        novi.setIme(kModel.ime.getValue());
+        novi.setPrezime(kModel.prezime.getValue());
+        novi.setUser(kModel.user.getValue());
+        novi.setPass(kModel.pass.getValue());
+        k.add(novi);
+        refreshTable();
+        clearDodavanje();
     }
 
     public void onTraziPoNazivuButtonPressed(ActionEvent actionEvent) throws myException {
