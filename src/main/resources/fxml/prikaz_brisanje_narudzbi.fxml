@@ -36,7 +36,7 @@
       </TableView>
       <MenuButton fx:id="menuButton" mnemonicParsing="false" text="Menu">
         <items>
-          <MenuItem mnemonicParsing="false" text="Upravljanje kupcima" />
+          <MenuItem fx:id="upravljanjeKupcimaMenuItem" mnemonicParsing="false" onAction="#onUpravljanjeKupcimaPressed" text="Upravljanje kupcima" />
           <MenuItem fx:id="upravljanjeArtiklimaMenuItem" mnemonicParsing="false" onAction="#onUpravljanjeArtiklimaPressed" text="Upravljanje artiklima" />
         </items>
          <GridPane.margin>
