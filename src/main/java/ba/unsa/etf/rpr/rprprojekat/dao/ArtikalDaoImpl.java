@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Properties;
 import java.util.TreeMap;
 
 public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
@@ -47,8 +48,8 @@ public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
     @Override
     public ObservableList<Artikal> getByName(String naziv) throws myException {
         Artikal a = null;
-
-        String query = "SELECT * FROM sql7582884.artikal a WHERE a.naziv_artikla LIKE ?";
+        Properties p= new Properties();
+        String query = "SELECT * FROM "+p.getProperty("db.schema")+".artikal a WHERE a.naziv_artikla LIKE ?";
         try {
             Connection c= GetConnection.DajConnection();
             System.out.println(c.isValid(10));//connection valid?

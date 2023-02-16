@@ -51,8 +51,8 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     @Override
     public Korisnik getByName(String ime, String prezime) throws myException {
     Korisnik k = null;
-
-        String query = "SELECT * FROM sql7582884.korisnik k WHERE concat(k.ime,k.prezime) LIKE concat(?,?)";
+        Properties p = new Properties();
+        String query = "SELECT * FROM "+p.getProperty("db.schema")+".korisnik k WHERE concat(k.ime,k.prezime) LIKE concat(?,?)";
         try {
             Connection c=GetConnection.DajConnection();
             System.out.println(c.isValid(10));//connection valid?
@@ -74,8 +74,8 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     @Override
     public Korisnik getByUsername(String username) throws myException{
         Korisnik k = null;
-
-        String query = "SELECT * FROM sql7582884.korisnik k WHERE user LIKE ?";
+    Properties p= new Properties();
+        String query = "SELECT * FROM "+p.getProperty("db.schema")+".korisnik k WHERE user LIKE ?";
         try {
             Connection c=GetConnection.DajConnection();
             System.out.println(c.isValid(10));//connection valid?
