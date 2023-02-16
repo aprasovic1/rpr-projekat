@@ -50,7 +50,6 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
             for (Narudzba nx : n.getAll()) {
                 System.out.println(nx.toString());
             }
-
             narudzbeTable.getItems().clear();
             narudzbeTable.setItems(n.getAll());
             narudzbeTable.refresh();
