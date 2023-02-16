@@ -33,7 +33,7 @@ public class StavkaNarudzbeDaoImpl extends AbstractDao<StavkaNarudzbe> implement
     @Override
     public Map<String, Object> objectToRow(StavkaNarudzbe object) {
         Map<String, Object> row = new TreeMap<String, Object>();
-        row.put("id", object.getId());
+        row.put("stavka_id", object.getId());
         row.put("narudzba_id", object.getNarudzba_id());
         row.put("artikal_id", object.getArtikal_id());
         row.put("kolicina", object.getKolicina());
