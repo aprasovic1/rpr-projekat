@@ -9,8 +9,15 @@ import java.sql.*;
 import java.util.*;
 
 public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDao{
+    Properties p= new Properties();
     public KorisnikDaoImpl() {
         super("korisnik");
+
+        try {
+            p.load(ClassLoader.getSystemResource("application.properties").openStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -51,7 +58,7 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     @Override
     public Korisnik getByName(String ime, String prezime) throws myException {
     Korisnik k = null;
-        Properties p = new Properties();
+
         String query = "SELECT * FROM "+p.getProperty("db.schema")+".korisnik k WHERE concat(k.ime,k.prezime) LIKE concat(?,?)";
         try {
             Connection c=GetConnection.DajConnection();
@@ -74,7 +81,7 @@ public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDa
     @Override
     public Korisnik getByUsername(String username) throws myException{
         Korisnik k = null;
-    Properties p= new Properties();
+
         String query = "SELECT * FROM "+p.getProperty("db.schema")+".korisnik k WHERE user LIKE ?";
         try {
             Connection c=GetConnection.DajConnection();

@@ -3,13 +3,13 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 import java.util.Objects;
 
 public class StavkaArtikal implements IDable {
-    int stavka_id, narudzba_id,artikal_id,kolicina,cijena;
+    int id, narudzba_id,artikal_id,kolicina,cijena;
 
     public int getId() {
-        return stavka_id;
+        return id;
     }
     public void setId(int stavka_id) {
-        this.stavka_id = stavka_id;
+        this.id = stavka_id;
     }
     public int getNarudzba_id() {
         return narudzba_id;
@@ -41,18 +41,18 @@ public class StavkaArtikal implements IDable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StavkaArtikal that = (StavkaArtikal) o;
-        return stavka_id == that.stavka_id && narudzba_id == that.narudzba_id && artikal_id == that.artikal_id && kolicina == that.kolicina && cijena == that.cijena;
+        return id == that.id && narudzba_id == that.narudzba_id && artikal_id == that.artikal_id && kolicina == that.kolicina && cijena == that.cijena;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(stavka_id, narudzba_id, artikal_id, kolicina, cijena);
+        return Objects.hash(id, narudzba_id, artikal_id, kolicina, cijena);
     }
 
     @Override
     public String toString() {
         return "StavkaArtikal{" +
-                "stavka_id=" + stavka_id +
+                "id=" + id +
                 ", narudzba_id=" + narudzba_id +
                 ", artikal_id=" + artikal_id +
                 ", kolicina=" + kolicina +

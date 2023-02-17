@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +17,15 @@ import java.util.TreeMap;
 
 public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
 
-
+    Properties p= new Properties();
     public ArtikalDaoImpl() {
         super("artikal");
+
+        try {
+            p.load(ClassLoader.getSystemResource("application.properties").openStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -48,7 +55,7 @@ public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
     @Override
     public ObservableList<Artikal> getByName(String naziv) throws myException {
         Artikal a = null;
-        Properties p= new Properties();
+
         String query = "SELECT * FROM "+p.getProperty("db.schema")+".artikal a WHERE a.naziv_artikla LIKE ?";
         try {
             Connection c= GetConnection.DajConnection();
