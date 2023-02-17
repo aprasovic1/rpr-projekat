@@ -56,7 +56,6 @@ public class LoginController implements Initializable {
 
         try
         {
-
             KorisnikDaoImpl k=null;
             Korisnik kor=null ;
             try{

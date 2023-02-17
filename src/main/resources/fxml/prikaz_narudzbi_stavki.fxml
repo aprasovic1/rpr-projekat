@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
+<GridPane prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="287.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="313.0" />
@@ -66,7 +66,7 @@
                 </Button>
             </children>
         </HBox>
-      <TableView fx:id="narudzbeTable1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TableView fx:id="StavkeNarudzbeTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <columns>
             <TableColumn fx:id="stavkaNarudzbeIdKolona" maxWidth="-1.0" minWidth="40.0" prefWidth="-1.0" text="id" />
             <TableColumn fx:id="artikalIdKolona" maxWidth="100.0" minWidth="70.0" prefWidth="66.0" text="artikal_id" />

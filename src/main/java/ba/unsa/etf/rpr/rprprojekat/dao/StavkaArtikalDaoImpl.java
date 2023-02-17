@@ -24,7 +24,7 @@ public class StavkaArtikalDaoImpl  implements StavkaArtikalDao{
     }
 
     public ObservableList<StavkaArtikal> getAllWithNarudzbaId(int narudzba_id) throws myException {
-        String query = "select narudzba_id,artikal_id,kolicina,cijena from stavka_narudzbe s ,artikal a where s.artikal_id= a.id and narudzba_id=?";
+        String query = "select s.id,s.artikal_id,s.kolicina,a.cijena from stavka_narudzbe s ,artikal a where s.artikal_id= a.id and narudzba_id=?";
         ArrayList<StavkaArtikal> results = new ArrayList<StavkaArtikal>();
         try{
             Connection conn= GetConnection.DajConnection();
@@ -51,8 +51,7 @@ public class StavkaArtikalDaoImpl  implements StavkaArtikalDao{
     public StavkaArtikal rowToObject(ResultSet rs) throws myException {
         try {
             StavkaArtikal s = new StavkaArtikal();
-            s.setId(rs.getInt("stavka_id"));
-            s.setNarudzba_id(rs.getInt("narudzba_id"));
+            s.setId(rs.getInt("id"));
             s.setArtikal_id(rs.getInt("artikal_id"));
             s.setKolicina(rs.getInt("kolicina"));
             s.setCijena(rs.getInt("cijena"));
@@ -68,8 +67,7 @@ public class StavkaArtikalDaoImpl  implements StavkaArtikalDao{
 
     public Map<String, Object> objectToRow(StavkaArtikal object) throws myException {
         Map<String, Object> row = new TreeMap<String, Object>();
-        row.put("stavka_id", object.getId());
-        row.put("narudzba_id", object.getNarudzba_id());
+        row.put("id", object.getId());
         row.put("artikal_id", object.getArtikal_id());
         row.put("kolicina", object.getKolicina());
         row.put("cijena", object.getCijena());

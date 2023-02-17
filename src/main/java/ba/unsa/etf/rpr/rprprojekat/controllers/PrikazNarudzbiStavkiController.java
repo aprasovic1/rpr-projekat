@@ -67,19 +67,14 @@ public class PrikazNarudzbiStavkiController implements Initializable {
             System.out.println(e.getMessage());
 
         }
-    }
-    public void onPrikaziStavkeNarudzbeButtonPressed(ActionEvent actionEvent) throws myException {
-
-        System.out.println("Button :2");
         stavkaNarudzbeIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
-        System.out.println("Button :3");
         artikalIdKolona.setCellValueFactory(new PropertyValueFactory<>("artikal_id"));
-        System.out.println("Button :4");
-        kolicinaKolona.setCellValueFactory(new PropertyValueFactory<>("kolicina"));
         System.out.println("Button :5");
-        cijenaKolona.setCellValueFactory(new PropertyValueFactory<>("cijena"));
+        kolicinaKolona.setCellValueFactory(new PropertyValueFactory<>("kolicina"));
         System.out.println("Button :6");
-
+        cijenaKolona.setCellValueFactory(new PropertyValueFactory<>("cijena"));
+    }
+        public void onPrikaziStavkeNarudzbeButtonPressed(ActionEvent actionEvent) throws myException {
 
         StavkeNarudzbeTable.getItems().clear();
         System.out.println("Button :7");
