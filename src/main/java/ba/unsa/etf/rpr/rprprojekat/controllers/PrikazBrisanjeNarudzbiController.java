@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
+
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.time.LocalDate;
@@ -47,6 +49,7 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
         narudzbaIdKolona.setCellValueFactory(new PropertyValueFactory<>("id"));
         korisnikIdKolona.setCellValueFactory(new PropertyValueFactory<>("korisnik_id"));
         datumNarudzbeIdKolona.setCellValueFactory(new PropertyValueFactory<>("datum_narudzbe"));
+        idNarudzbeText.textProperty().bindBidirectional( nModel.id, new NumberStringConverter());
         try {
             for (Narudzba nx : n.getAll()) {
                 System.out.println(nx.toString());
@@ -62,12 +65,13 @@ public class PrikazBrisanjeNarudzbiController implements Initializable {
     }
 
     public void onBrisiNarzdzbuButtonPressed(ActionEvent actionEvent) throws myException {
-        idNarudzbeText.textProperty().bindBidirectional((Property<String>) nModel.id.asString());
-        new StavkaNarudzbeDaoImpl().delete(nModel.id.getValue());
+
+        new StavkaNarudzbeDaoImpl().deleteWithNarudzbaID(nModel.id.getValue());
         n.delete(nModel.id.getValue());
         idNarudzbeText.clear();
+        narudzbeTable.getItems().clear();
+        narudzbeTable.setItems(n.getAll());
         narudzbeTable.refresh();
-
     }
     public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
         LoginController.openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());

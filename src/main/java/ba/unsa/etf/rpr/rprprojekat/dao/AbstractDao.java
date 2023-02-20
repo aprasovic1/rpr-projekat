@@ -75,6 +75,7 @@ public abstract class AbstractDao<T extends IDable> implements Dao<T>{
             PreparedStatement s = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             s.setObject(1, id);
             s.executeUpdate();
+            System.out.println(s.toString());
         }catch (SQLException e){
             throw new myException(e.getMessage(), e);
         }

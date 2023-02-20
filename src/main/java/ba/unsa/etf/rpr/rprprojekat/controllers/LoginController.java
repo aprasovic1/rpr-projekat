@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginBtn.setDefaultButton(true);
-        wrongPassLabel.setText("Unesite");
+        wrongPassLabel.setText("Unesite podatke");
     }
 
     protected static void openDialog(String title, String file, Object controller) {
