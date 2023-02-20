@@ -13,10 +13,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.rprprojekat.controllers. KreiranjeNarudzbiController.java">
+<GridPane prefHeight="403.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="287.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="313.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="288.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="174.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints prefHeight="33.0" vgrow="NEVER" />
@@ -25,11 +25,12 @@
         <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <TableView fx:id="narudzbeTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+        <TableView fx:id="artikliTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
             <columns>
-                <TableColumn fx:id="narudzbaIdKolona" maxWidth="-1.0" minWidth="40.0" prefWidth="-1.0" text="id" />
-                <TableColumn fx:id="korisnikIdKolona" maxWidth="100.0" minWidth="70.0" prefWidth="66.0" text="korisnik_id" />
-                <TableColumn fx:id="datumNarudzbeIdKolona" maxWidth="104.0" minWidth="100.0" prefWidth="100.0" text="datum_narudzbe" />
+                <TableColumn fx:id="artikalIdKolona" maxWidth="-1.0" minWidth="40.0" prefWidth="-1.0" text="id" />
+                <TableColumn fx:id="artikalNazivKolona" maxWidth="100.0" minWidth="70.0" prefWidth="66.0" text="naziv" />
+                <TableColumn fx:id="artikalCijenaKolona" maxWidth="104.0" minWidth="68.0" prefWidth="68.0" text="cijena" />
+                <TableColumn fx:id="artikalKolicinaKolona" maxWidth="132.0" minWidth="94.0" prefWidth="96.0" text="kolicina" />
             </columns>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -44,39 +45,46 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </MenuButton>
-        <Label text="Narudzbe" GridPane.rowIndex="1">
+        <Label text="Artikli" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </Label>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
             <children>
-                <TextField fx:id="idNarudzbeText" prefHeight="25.0" prefWidth="161.0" promptText="ID narudzbe">
+                <TextField fx:id="idArtiklaText" prefHeight="25.0" prefWidth="85.0" promptText="ID Artikla">
                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </TextField>
-                <Button fx:id="prikaziStavkeNarudzbeButton" mnemonicParsing="false" onAction="#onPrikaziStavkeNarudzbeButtonPressed" text="Prikazi stavke">
+            <TextField fx:id="kolicinaText" layoutX="15.0" layoutY="20.0" prefHeight="25.0" prefWidth="85.0" promptText="Kolicina" />
+                <Button fx:id="dodajArtikalButton" mnemonicParsing="false" onAction="#onDodajArtikalButtonPressed" text="Dodaj">
                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </Button>
             </children>
         </HBox>
-        <TableView fx:id="StavkeNarudzbeTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <TableView fx:id="odabraniArtikliTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <columns>
-                <TableColumn fx:id="stavkaNarudzbeIdKolona" maxWidth="-1.0" minWidth="40.0" prefWidth="-1.0" text="id" />
-                <TableColumn fx:id="artikalIdKolona" maxWidth="100.0" minWidth="70.0" prefWidth="66.0" text="artikal_id" />
-                <TableColumn fx:id="kolicinaKolona" maxWidth="104.0" minWidth="100.0" prefWidth="100.0" text="kolicina" />
-                <TableColumn fx:id="cijenaKolona" maxWidth="104.0" minWidth="100.0" prefWidth="100.0" text="cijena" />
+                <TableColumn fx:id="odabraniArtikalIdKolona" maxWidth="-1.0" minWidth="40.0" prefWidth="-1.0" text="id" />
+                <TableColumn fx:id="odabranaKolicinaKolona" maxWidth="122.0" minWidth="70.0" prefWidth="122.0" text="odabrana_kolicina" />
             </columns>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </TableView>
-        <Label text="Stavke odabrane narudzbe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Odabrani artikli" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Button fx:id="kreirajNarudzbuButton" mnemonicParsing="false" onAction="#onKreirajNarudzbuButtonPressed" prefHeight="25.0" prefWidth="121.0" text="Kreiraj Narudzbu" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Button>
     </children>
 </GridPane>
