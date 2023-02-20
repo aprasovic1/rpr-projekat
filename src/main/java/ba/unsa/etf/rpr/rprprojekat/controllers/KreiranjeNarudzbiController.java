@@ -49,13 +49,12 @@ public class KreiranjeNarudzbiController implements Initializable {
     public Button dodajArtikalButton;
     public Button kreirajNarudzbuButton;
     NarudzbaDaoImpl n = new NarudzbaDaoImpl();
-    StavkaNarudzbeDaoImpl sn=new StavkaNarudzbeDaoImpl();
-    ArtikalDaoImpl a=new ArtikalDaoImpl();
-    private ArtikalModel aModel=new ArtikalModel();
+    StavkaNarudzbeDaoImpl sn = new StavkaNarudzbeDaoImpl();
+    ArtikalDaoImpl a = new ArtikalDaoImpl();
+    private ArtikalModel aModel = new ArtikalModel();
+
     public KreiranjeNarudzbiController() {
     }
-
-
 
 
     @FXML
@@ -84,49 +83,61 @@ public class KreiranjeNarudzbiController implements Initializable {
         }
     }
 
-    ArrayList<Artikal> arrArt=new ArrayList<Artikal>() ;
-    Narudzba nar=new Narudzba();
-    StavkaNarudzbe stavka=new StavkaNarudzbe();
+    ArrayList<Artikal> arrArt = new ArrayList<Artikal>();
+    Narudzba nar = new Narudzba();
+    ArrayList<StavkaNarudzbe> stavke =new ArrayList<StavkaNarudzbe>() ;
+
     public void onDodajArtikalButtonPressed(ActionEvent actionEvent) throws myException {
-        System.out.println("ID:"+aModel.id.getValue()+"\n");
-        System.out.println("KOL:"+aModel.kolicina.getValue());
-        Artikal art =a.getById(aModel.id.getValue());
-        int id = LoginController.ID;
+        System.out.println("ID:" + aModel.id.getValue() + "\n");
+        System.out.println("KOL:" + aModel.kolicina.getValue());
+        Artikal art = a.getById(aModel.id.getValue());
+        int id = LoginController.ID;//id korisnika
         nar.setDatum_narudzbe(java.time.LocalDate.now());
         nar.setKorisnik_id(id);
-try{
-if(art.getKolicina()<aModel.kolicina.getValue()) throw new myException("Na stanju nema toliko komada artikla! ");
-}catch (myException m){
-    new Alert(Alert.AlertType.NONE, m.getMessage(), ButtonType.OK).show();
-}
+        StavkaNarudzbe stavka=new StavkaNarudzbe();
+        try {
+            if (art.getKolicina() < aModel.kolicina.getValue())
+                throw new myException("Na stanju nema toliko komada artikla! ");
+        } catch (myException m) {
+            new Alert(Alert.AlertType.NONE, m.getMessage(), ButtonType.OK).show();
+        }
         stavka.setArtikal_id(aModel.id.getValue());
         stavka.setKolicina(aModel.kolicina.getValue());
+        art.setKolicina(aModel.kolicina.getValue());
+        System.out.println(art.toString());
         arrArt.add(art);
 
-       odabraniArtikliTable.getItems().clear();
         odabraniArtikliTable.setItems(FXCollections.observableList(arrArt));
         odabraniArtikliTable.refresh();
 
-
+stavke.add(stavka);
     }
+
     public void onKreirajNarudzbuButtonPressed(ActionEvent actionEvent) throws myException {
-        n.add(nar,stavka);
+        n.add(nar, stavke);
         odabraniArtikliTable.getItems().clear();
         odabraniArtikliTable.refresh();
         arrArt.clear();
-a.skiniSaStanja(aModel.id.getValue(),aModel.kolicina.getValue());
+        a.skiniSaStanja(aModel.id.getValue(), aModel.kolicina.getValue());
+
+        artikliTable.getItems().clear();
+        artikliTable.setItems(a.getAll());
+        artikliTable.refresh();
 
     }
+
     public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
-        LoginController.openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
+        LoginController.openDialog("Dodavanje/Azuriranje artikla", "/fxml/dodavanje_azuriranje_artikla.fxml", new DodavanjeAzuriranjeArtiklaController());
         Stage stara = (Stage) menuButton.getScene().getWindow();
         stara.hide();
     }
+
     public void onUpravljanjeKupcimaPressed(ActionEvent actionEvent) {
         LoginController.openDialog("Dodavanje/Azuriranje kupaca", "/fxml/dodavanje_azuriranje_kupca.fxml", new DodavanjeAzuriranjeKupcaController());
         Stage stara = (Stage) menuButton.getScene().getWindow();
         stara.hide();
     }
+
     public class ArtikalModel {
         public SimpleIntegerProperty id = new SimpleIntegerProperty(),
                 cijena = new SimpleIntegerProperty(),
@@ -150,6 +161,7 @@ a.skiniSaStanja(aModel.id.getValue(),aModel.kolicina.getValue());
         }
 
     }
+
     private void bindAzuriranje() {
         idArtiklaText.textProperty().bindBidirectional(aModel.id, new NumberStringConverter());
         kolicinaText.textProperty().bindBidirectional(aModel.kolicina, new NumberStringConverter());

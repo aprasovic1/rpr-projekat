@@ -61,7 +61,7 @@ public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
             PreparedStatement s = c.prepareStatement(query);
             s.setInt(1, kolicina);
             s.setInt(2, id);
-            s.executeQuery();
+            s.executeUpdate();
         }
         catch (Exception e) {
             throw new myException(e.getMessage(), e);

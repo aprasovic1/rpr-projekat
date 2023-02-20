@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -33,16 +34,23 @@ public class StavkaNarudzbeDaoImpl extends AbstractDao<StavkaNarudzbe> implement
     @Override
     public Map<String, Object> objectToRow(StavkaNarudzbe object) {
         Map<String, Object> row = new TreeMap<String, Object>();
-        row.put("stavka_id", object.getId());
+        row.put("id", object.getId());
         row.put("narudzba_id", object.getNarudzba_id());
         row.put("artikal_id", object.getArtikal_id());
         row.put("kolicina", object.getKolicina());
         return row;
     }
-    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
+    public void add(Narudzba nar, ArrayList<StavkaNarudzbe> sn) throws myException {
+
         new NarudzbaDaoImpl().add(nar);
-        sn.setNarudzba_id(nar.getId());
-        new StavkaNarudzbeDaoImpl().add(sn);
+        int idNar= nar.getId();
+
+
+        for (StavkaNarudzbe stavka:sn) {
+            stavka.setNarudzba_id(idNar);
+            new StavkaNarudzbeDaoImpl().add(stavka);
+        }
+
 
     }
 }

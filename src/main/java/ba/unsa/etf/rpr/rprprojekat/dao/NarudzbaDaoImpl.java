@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -39,13 +40,15 @@ public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDa
         return row;
     }
 
-    public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
-        System.out.println("ideNarudzbaAdd");
-       new NarudzbaDaoImpl().add(nar);
-        System.out.println("ID Narudzbe: "+nar.getId());
-        sn.setNarudzba_id(nar.getId());
-        System.out.println("ideStavkaNarudzbaAdd");
-        new StavkaNarudzbeDaoImpl().add(sn);
+    public void add(Narudzba nar, ArrayList<StavkaNarudzbe> sn) throws myException {
 
+        new NarudzbaDaoImpl().add(nar);
+        int idNar = nar.getId();
+
+
+        for (StavkaNarudzbe stavka : sn) {
+            stavka.setNarudzba_id(idNar);
+            new StavkaNarudzbeDaoImpl().add(stavka);
+        }
     }
 }
