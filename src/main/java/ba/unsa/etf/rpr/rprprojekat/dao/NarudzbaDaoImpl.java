@@ -40,7 +40,11 @@ public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDa
     }
 
     public void add(Narudzba nar, StavkaNarudzbe sn) throws myException {
+        System.out.println("ideNarudzbaAdd");
        new NarudzbaDaoImpl().add(nar);
+        System.out.println("ID Narudzbe: "+nar.getId());
+        sn.setNarudzba_id(nar.getId());
+        System.out.println("ideStavkaNarudzbaAdd");
         new StavkaNarudzbeDaoImpl().add(sn);
 
     }

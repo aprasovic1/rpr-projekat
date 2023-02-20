@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     public TextField usrField;
     public Button loginBtn;
     public Label wrongPassLabel;
+    static protected int ID;
 
 
     public LoginController() {}
@@ -79,9 +80,10 @@ public class LoginController implements Initializable {
             //openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
             //openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
             //openDialog("Dodavanje/Azuriranje kupaca","/fxml/dodavanje_azuriranje_kupca.fxml",new DodavanjeAzuriranjeKupcaController());
-            openDialog("Prikaz Narudzbi Stavki","/fxml/prikaz_narudzbi_stavki.fxml",new PrikazNarudzbiStavkiController());
+            //openDialog("Prikaz Narudzbi Stavki","/fxml/prikaz_narudzbi_stavki.fxml",new PrikazNarudzbiStavkiController());
+            openDialog("Kreiranje Narudzbi","/fxml/kreiranje_narudzbi.fxml",new KreiranjeNarudzbiController());
             Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
-
+    ID=kor.getId();
         } catch (Exception e) {
 
             throw new RuntimeException(e);

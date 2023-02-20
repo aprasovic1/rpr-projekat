@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
@@ -52,6 +53,20 @@ public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
         return row;
     }
 
+    public void skiniSaStanja(int id,int kolicina) throws myException {
+        String query ="update "+p.getProperty("db.schema")+".artikal set kolicina=kolicina-? where id=?";
+        try {
+            Connection c = GetConnection.DajConnection();
+            System.out.println(c.isValid(10));//connection valid?
+            PreparedStatement s = c.prepareStatement(query);
+            s.setInt(1, kolicina);
+            s.setInt(2, id);
+            s.executeQuery();
+        }
+        catch (Exception e) {
+            throw new myException(e.getMessage(), e);
+        }
+    }
     @Override
     public ObservableList<Artikal> getByName(String naziv) throws myException {
         Artikal a = null;
