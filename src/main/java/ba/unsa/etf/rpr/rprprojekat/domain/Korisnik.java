@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 
 import java.util.Objects;
 
+/**
+ *Bean for Korisnik
+ */
 public class Korisnik implements IDable {
     private int id;
     private String ime,prezime,user,pass;

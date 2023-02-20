@@ -11,9 +11,8 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Abstraktna klasa koja implementira CRUD metode
- *
- * */
+ * Abstract class that implements CRUD methods
+ */
 public abstract class AbstractDao<T extends IDable> implements Dao<T>{
     private Connection conn;
     private String tableName;

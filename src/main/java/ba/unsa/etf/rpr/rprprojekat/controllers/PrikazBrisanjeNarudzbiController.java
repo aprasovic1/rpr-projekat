@@ -16,13 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
 
-
+/**
+ * Controller class for Showing and deleting orders
+ */
 public class PrikazBrisanjeNarudzbiController implements Initializable {
     public TableView<Narudzba> narudzbeTable;
     public TableColumn<Integer, Narudzba> narudzbaIdKolona;

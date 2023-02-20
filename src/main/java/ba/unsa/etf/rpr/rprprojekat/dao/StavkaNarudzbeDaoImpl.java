@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * Implementation of Dao interface for StavkaNarudzbe domain bean
+ */
 public class StavkaNarudzbeDaoImpl extends AbstractDao<StavkaNarudzbe> implements StavkaNarudzbeDao{
     public StavkaNarudzbeDaoImpl() {
         super("stavka_narudzbe");

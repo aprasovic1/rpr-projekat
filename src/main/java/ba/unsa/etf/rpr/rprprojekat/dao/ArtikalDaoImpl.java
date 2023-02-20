@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
-
+/**
+ * Implementation of Dao interface for Artikal domain bean
+ */
 public class ArtikalDaoImpl extends AbstractDao<Artikal> implements ArtikalDao{
 
     Properties p= new Properties();

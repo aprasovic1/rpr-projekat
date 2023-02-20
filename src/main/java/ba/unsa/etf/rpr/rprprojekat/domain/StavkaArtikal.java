@@ -1,7 +1,10 @@
 package ba.unsa.etf.rpr.rprprojekat.domain;
 
 import java.util.Objects;
-
+/**
+ *Bean for Stavka and Artikal together
+ * Used in PrikazNarudzbiStavkiController class
+ */
 public class StavkaArtikal implements IDable {
     int id, narudzba_id,artikal_id,kolicina,cijena;
 

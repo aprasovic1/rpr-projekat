@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-
+/**
+ * Controller class for Adding and updating users
+ */
 public class DodavanjeAzuriranjeKupcaController implements Initializable{
 
     public MenuButton menuButton;

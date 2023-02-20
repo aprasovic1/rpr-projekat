@@ -7,7 +7,9 @@ import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-
+/**
+ * Implementation of Dao interface for Korisnik domain bean
+ */
 public class KorisnikDaoImpl extends AbstractDao<Korisnik> implements KorisnikDao{
     Properties p= new Properties();
     public KorisnikDaoImpl() {

@@ -8,7 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * Implementation of Dao interface for Narudzba domain bean
+ */
 public class NarudzbaDaoImpl extends AbstractDao<Narudzba> implements NarudzbaDao {
     private Connection conn;
     private String tableName = "narudzba";

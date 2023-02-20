@@ -5,7 +5,9 @@ import ba.unsa.etf.rpr.rprprojekat.dao.StavkaNarudzbeDaoImpl;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 
 import java.util.Objects;
-
+/**
+ *Bean for Stavka Narudzbe
+ */
 public class StavkaNarudzbe implements
         IDable{
     int id, narudzba_id,artikal_id,kolicina;

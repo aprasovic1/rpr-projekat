@@ -10,13 +10,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Database Connection class implemented using Singleton Desing Pattern
+ */
 public class GetConnection {
 
+    private static Connection con = null;
    public static Connection DajConnection() throws myException, IOException {
 
         String[] konekcioniString = new String[3];
 
-        Connection con = null;
+
         Properties p = new Properties();
         p.load(ClassLoader.getSystemResource("application.properties").openStream());
         try {

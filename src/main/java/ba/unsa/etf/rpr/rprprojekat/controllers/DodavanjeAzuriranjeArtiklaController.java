@@ -12,10 +12,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for Adding and updating items
+ */
 public class DodavanjeAzuriranjeArtiklaController implements Initializable {
 
     public TableView<Artikal> prikazArtikalaTableView;

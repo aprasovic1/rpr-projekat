@@ -22,24 +22,29 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
+/**
+ * Controller class for Login
+ */
 public class LoginController implements Initializable {
 
     public PasswordField pwdField;
     public TextField usrField;
     public Button loginBtn;
     public Label wrongPassLabel;
+    static protected boolean jesteAdmin = false;
     static protected int ID;
 
 
-    public LoginController() {}
+    public LoginController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loginBtn.setDefaultButton(true);wrongPassLabel.setText("Unesite");
+        loginBtn.setDefaultButton(true);
+        wrongPassLabel.setText("Unesite");
     }
 
-    protected static void openDialog(String title, String file, Object controller){
+    protected static void openDialog(String title, String file, Object controller) {
         try {
             FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(file));
             loader.setController(controller);
@@ -48,50 +53,58 @@ public class LoginController implements Initializable {
             stage.setTitle(title);
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    @FXML
-    protected void onLoginButtonClick () {
 
-        try
-        {
-            KorisnikDaoImpl k=null;
-            Korisnik kor=null ;
-            try{
-                k=new KorisnikDaoImpl();
-                kor =k.getByUsername(usrField.getText());
-            }
-            catch(myException e){
+    @FXML
+    protected void onLoginButtonClick() {
+
+        try {
+            KorisnikDaoImpl k = null;
+            Korisnik kor = null;
+            try {
+                k = new KorisnikDaoImpl();
+                kor = k.getByUsername(usrField.getText());
+            } catch (myException e) {
                 new Alert(Alert.AlertType.WARNING, "Korisnik ne postoji!", ButtonType.OK).show();
             }
-            while(true) {
+
+            while (true) {
                 if (!kor.getPass().equals(pwdField.getText())) {
                     System.out.println("Pogresan password!");
                     new Alert(Alert.AlertType.WARNING, "Pogresan password!", ButtonType.OK).show();
                     wait();
+                } else {
+                    jesteAdmin = kor.isJesteAdmin();
+                    break;
                 }
-                else break;
+                ;
 
 
             }
+            if (jesteAdmin) {
+                openDialog("Prikaz/brisanje narudzbi", "/fxml/prikaz_brisanje_narudzbi.fxml", new PrikazBrisanjeNarudzbiController());
+            } else
+                openDialog("Prikaz Narudzbi Stavki", "/fxml/prikaz_narudzbi_stavki.fxml", new PrikazNarudzbiStavkiController());
 
             //openDialog("Prikaz/brisanje narudzbi","/fxml/prikaz_brisanje_narudzbi.fxml",new PrikazBrisanjeNarudzbiController());
             //openDialog("Dodavanje/Azuriranje artikla","/fxml/dodavanje_azuriranje_artikla.fxml",new DodavanjeAzuriranjeArtiklaController());
             //openDialog("Dodavanje/Azuriranje kupaca","/fxml/dodavanje_azuriranje_kupca.fxml",new DodavanjeAzuriranjeKupcaController());
+
             //openDialog("Prikaz Narudzbi Stavki","/fxml/prikaz_narudzbi_stavki.fxml",new PrikazNarudzbiStavkiController());
-            openDialog("Kreiranje Narudzbi","/fxml/kreiranje_narudzbi.fxml",new KreiranjeNarudzbiController());
-            Stage stara = (Stage) loginBtn.getScene().getWindow();stara.hide();
-    ID=kor.getId();
+            //openDialog("Kreiranje Narudzbi","/fxml/kreiranje_narudzbi.fxml",new KreiranjeNarudzbiController());
+
+            Stage stara = (Stage) loginBtn.getScene().getWindow();
+            stara.hide();
+            ID = kor.getId();
         } catch (Exception e) {
 
             throw new RuntimeException(e);
         }
 
     }
-
-
 
 
 }

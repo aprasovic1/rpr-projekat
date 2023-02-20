@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 
 import java.util.Objects;
 
+/**
+ *Bean for Artikal
+ */
 public class Artikal implements IDable
 {
     private int id,cijena,kolicina;

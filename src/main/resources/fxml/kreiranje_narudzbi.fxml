@@ -38,8 +38,8 @@
         </TableView>
         <MenuButton fx:id="menuButton" mnemonicParsing="false" text="Menu">
             <items>
-                <MenuItem fx:id="upravljanjeKupcimaMenuItem" mnemonicParsing="false" onAction="#onUpravljanjeKupcimaPressed" text="Upravljanje kupcima" />
-                <MenuItem fx:id="upravljanjeArtiklimaMenuItem" mnemonicParsing="false" onAction="#onUpravljanjeArtiklimaPressed" text="Upravljanje artiklima" />
+                <MenuItem fx:id="prikazNarudzbiStavkiMenuItem" mnemonicParsing="false" onAction="#onPrikazNarudzbiStavkiPressed" text="Prikaz Narudzbi i Stavki" />
+                <MenuItem fx:id="kreiranjeNarudzbiMenuItem" mnemonicParsing="false" onAction="#onKreiranjeNarudzbiPressed" text="Kreiranje Narudzbi" />
             </items>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

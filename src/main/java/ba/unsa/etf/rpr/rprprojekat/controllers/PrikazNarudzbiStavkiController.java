@@ -20,12 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
-
+/**
+ * Controller class for Showing items from certain order
+ */
 public class PrikazNarudzbiStavkiController implements Initializable {
     public TableView<Narudzba> narudzbeTable;
     public TableColumn<Integer, Narudzba> narudzbaIdKolona;
@@ -85,10 +86,14 @@ public class PrikazNarudzbiStavkiController implements Initializable {
 
     }
 
-    public void onUpravljanjeKupcimaPressed(ActionEvent actionEvent) {
+    public void onKreiranjeNarudzbiPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Kreiranje Narudzbi","/fxml/kreiranje_narudzbi.fxml",new KreiranjeNarudzbiController());        Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
     }
 
-    public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
+    public void onPrikazNarudzbiStavkiPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Prikaz Narudzbi Stavki","/fxml/prikaz_narudzbi_stavki.fxml",new PrikazNarudzbiStavkiController());       Stage stara = (Stage) menuButton.getScene().getWindow();
+        stara.hide();
     }
 
     public class ArtikalModel {

@@ -3,7 +3,9 @@ package ba.unsa.etf.rpr.rprprojekat.domain;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ *Bean for Narudzba
+ */
 public class Narudzba implements IDable
 {
     private int id,korisnik_id;

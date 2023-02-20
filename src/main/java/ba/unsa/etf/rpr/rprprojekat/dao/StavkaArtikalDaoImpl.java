@@ -1,13 +1,11 @@
 package ba.unsa.etf.rpr.rprprojekat.dao;
 
-
 import ba.unsa.etf.rpr.rprprojekat.GetConnection;
 import ba.unsa.etf.rpr.rprprojekat.domain.StavkaArtikal;
 import ba.unsa.etf.rpr.rprprojekat.domain.StavkaNarudzbe;
 import ba.unsa.etf.rpr.rprprojekat.exceptions.myException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * Implementation of Dao interface for StavkaArtikal domain bean
+ */
 public class StavkaArtikalDaoImpl  implements StavkaArtikalDao{
 
     public StavkaArtikalDaoImpl() {

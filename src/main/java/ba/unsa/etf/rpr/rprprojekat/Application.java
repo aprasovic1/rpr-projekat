@@ -18,6 +18,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * Starting Class of this project
+ */
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {

@@ -22,14 +22,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
+/**
+ * Controller class for creating orders
+ */
 public class KreiranjeNarudzbiController implements Initializable {
     public TableView<Artikal> artikliTable;
     public TableColumn artikalIdKolona;
@@ -126,15 +127,13 @@ stavke.add(stavka);
 
     }
 
-    public void onUpravljanjeArtiklimaPressed(ActionEvent actionEvent) {
-        LoginController.openDialog("Dodavanje/Azuriranje artikla", "/fxml/dodavanje_azuriranje_artikla.fxml", new DodavanjeAzuriranjeArtiklaController());
-        Stage stara = (Stage) menuButton.getScene().getWindow();
+    public void onKreiranjeNarudzbiPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Kreiranje Narudzbi","/fxml/kreiranje_narudzbi.fxml",new KreiranjeNarudzbiController());        Stage stara = (Stage) menuButton.getScene().getWindow();
         stara.hide();
     }
 
-    public void onUpravljanjeKupcimaPressed(ActionEvent actionEvent) {
-        LoginController.openDialog("Dodavanje/Azuriranje kupaca", "/fxml/dodavanje_azuriranje_kupca.fxml", new DodavanjeAzuriranjeKupcaController());
-        Stage stara = (Stage) menuButton.getScene().getWindow();
+    public void onPrikazNarudzbiStavkiPressed(ActionEvent actionEvent) {
+        LoginController.openDialog("Prikaz Narudzbi Stavki","/fxml/prikaz_narudzbi_stavki.fxml",new PrikazNarudzbiStavkiController());       Stage stara = (Stage) menuButton.getScene().getWindow();
         stara.hide();
     }
 
