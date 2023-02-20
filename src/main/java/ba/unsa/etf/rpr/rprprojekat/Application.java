@@ -20,6 +20,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 /**
  * Starting Class of this project
+ * Three layers (Pojo class, DAO layer and Controller) in this project can be viewed as a Design Pattern
  */
 public class Application extends javafx.application.Application {
     @Override
