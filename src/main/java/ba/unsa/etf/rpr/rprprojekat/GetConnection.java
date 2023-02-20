@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Database Connection class implemented using Singleton Desing Pattern
+ * Database Connection class implemented using Singleton Design Pattern
  */
 public class GetConnection {
 
